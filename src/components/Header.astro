@@ -52,33 +52,35 @@ const nav = t.nav.map((link) => {
 <header class="pointer-events-none fixed inset-x-0 top-0 z-50">
   <div class="flex justify-center px-3 pt-3 sm:px-4 sm:pt-4" data-floating-nav>
     <div
-      class="pointer-events-auto relative flex h-14 w-full max-w-6xl items-center justify-between gap-3 rounded-2xl border border-border/40 bg-background/35 px-4 text-foreground shadow-md shadow-black/5 backdrop-blur-2xl supports-[backdrop-filter]:bg-background/25 dark:border-white/10 dark:bg-background/20 dark:shadow-black/25 sm:px-5 lg:h-[3.75rem]"
+      class="pointer-events-auto relative flex h-14 w-full max-w-6xl items-center gap-4 rounded-2xl border border-border/40 bg-background/35 px-4 text-foreground shadow-md shadow-black/5 backdrop-blur-2xl supports-[backdrop-filter]:bg-background/25 dark:border-white/10 dark:bg-background/20 dark:shadow-black/25 sm:gap-5 sm:px-5 lg:h-[3.75rem]"
     >
-    <a href={homeHref} class="inline-flex min-w-0 items-center font-[family-name:var(--font-heading)] text-lg font-bold tracking-wide" aria-label={t.ui.homeAria}>
-      <span class="truncate" aria-hidden="true">Aion 2<span class="text-primary">Cheats</span></span>
-    </a>
+    <div class="flex min-w-0 flex-1 items-center gap-6 lg:gap-8">
+      <a href={homeHref} class="inline-flex shrink-0 items-center font-[family-name:var(--font-heading)] text-lg font-bold tracking-wide" aria-label={t.ui.homeAria}>
+        <span class="truncate" aria-hidden="true">Aion 2<span class="text-primary">Cheats</span></span>
+      </a>
 
-    <nav class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-6 lg:flex" aria-label="Primary">
-      {nav.map((link) => (
-        <a
-          href={link.href}
-          class="nav-link inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-          data-nav-link
-          {...(link.scrollTarget ? { 'data-scroll-target': link.scrollTarget } : {})}
-        >
-          <Icon name={link.icon} size={16} />
-          {link.label}
-        </a>
-      ))}
-    </nav>
+      <nav class="hidden items-center gap-5 lg:flex xl:gap-6" aria-label="Primary">
+        {nav.map((link) => (
+          <a
+            href={link.href}
+            class="nav-link inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+            data-nav-link
+            {...(link.scrollTarget ? { 'data-scroll-target': link.scrollTarget } : {})}
+          >
+            <Icon name={link.icon} size={16} />
+            {link.label}
+          </a>
+        ))}
+      </nav>
+    </div>
 
-    <div class="flex items-center gap-2">
-      <div class="hidden items-center sm:flex">
-        <LanguageSwitcher locale={locale} class="mr-1" />
+    <div class="flex shrink-0 items-center gap-2">
+      <div class="hidden items-center gap-2 sm:flex">
+        <LanguageSwitcher locale={locale} class="shrink-0" />
         <SlideRevealButton href={purchaseUrl} class="hidden lg:inline-flex" ariaLabel={t.ui.checkoutAria}>
           {t.ui.browseCheats}
         </SlideRevealButton>
-        <div class="nav-action-divider hidden items-center px-3 lg:flex" aria-hidden="true">
+        <div class="nav-action-divider hidden items-center px-2 lg:flex" aria-hidden="true">
           <span class="block h-9 w-px bg-border"></span>
         </div>
         <AnimatedThemeSwitch size="md" ariaLabel={t.ui.themeLight} class="inline-flex" />
@@ -109,7 +111,7 @@ const nav = t.nav.map((link) => {
             ))}
           </nav>
           <div class="px-1">
-            <LanguageSwitcher locale={locale} compact class="w-full [&_.lang-switcher__trigger]:w-full [&_.lang-switcher__trigger]:justify-between" />
+            <LanguageSwitcher locale={locale} compact class="w-full" />
           </div>
           <Button as="a" href={purchaseUrl} variant="primary" class="w-full justify-center" aria-label={t.ui.checkoutAria}>
             {t.ui.browseCheatsMobile}

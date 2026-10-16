@@ -23,12 +23,13 @@ const priority = LOCALES.filter((code) => LOCALE_META[code].priority);
 const secondary = LOCALES.filter((code) => !LOCALE_META[code].priority);
 ---
 
-<div class:list={['lang-switcher relative', className]} data-lang-switcher>
+<div class:list={['lang-switcher relative shrink-0', className]} data-lang-switcher>
   <button
     type="button"
     class:list={[
-      'lang-switcher__trigger inline-flex items-center gap-1.5 rounded-lg border border-border/80 bg-background/50 font-medium text-foreground transition-colors hover:bg-muted',
-      compact ? 'h-9 px-2.5 text-xs' : 'h-9 px-2.5 text-sm',
+      'lang-switcher__trigger inline-flex h-9 items-center gap-1.5 rounded-lg border border-border/80 bg-background/50 font-medium leading-none text-foreground transition-colors hover:bg-muted',
+      /* Fixed width keeps header actions aligned across locales (EN vs 繁體中文 vs Português). */
+      compact ? 'w-full justify-between px-2.5 text-xs' : 'w-[8.75rem] justify-between px-2.5 text-sm',
     ]}
     aria-expanded="false"
     aria-haspopup="listbox"
@@ -36,7 +37,7 @@ const secondary = LOCALES.filter((code) => !LOCALE_META[code].priority);
     data-lang-trigger
   >
     <Icon name="globe" size={compact ? 15 : 16} class="shrink-0 text-muted-foreground" />
-    <span class="max-w-[5.5rem] truncate">{current.nativeName}</span>
+    <span class="min-w-0 flex-1 truncate text-left leading-none">{current.nativeName}</span>
     <Icon name="chevronDown" size={14} class="shrink-0 text-muted-foreground" />
   </button>
 
