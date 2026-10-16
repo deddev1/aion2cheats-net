@@ -1,5 +1,5 @@
 import { blogPosts } from '../data/blog';
-import { RSS_FEED_PATH, SITE_ORIGIN, absoluteAssetUrl, canonicalUrl } from '../config/seo';
+import { RSS_FEED_PATH, SITE_ORIGIN, absoluteShareImageUrl, canonicalUrl } from '../config/seo';
 import { parseBlogDate } from './schema';
 import { blogPostPath } from './path';
 
@@ -25,7 +25,7 @@ export function buildRssFeed(): string {
       <guid isPermaLink="true">${link}</guid>
       <description>${escapeXml(post.desc)}</description>
       <pubDate>${pubDate}</pubDate>
-      <enclosure url="${escapeXml(absoluteAssetUrl(post.image))}" type="image/png" />
+      <enclosure url="${escapeXml(absoluteShareImageUrl(post.image))}" type="image/webp" />
     </item>`;
     })
     .join('');

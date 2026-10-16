@@ -4,7 +4,8 @@ import { getPageSeoEntry } from './pageSeo';
 
 export const SITE_ORIGIN = `https://${t.site.domain}`;
 
-export const DEFAULT_OG_IMAGE = '/images/gameplay/aion-2-esp-wallhack.png';
+/** Stable share image (outside dist/images so prune-dist-images never deletes it). */
+export const DEFAULT_OG_IMAGE = '/og.jpg';
 
 export const GA_MEASUREMENT_ID = import.meta.env.PUBLIC_GA_MEASUREMENT_ID as string | undefined;
 
@@ -36,6 +37,21 @@ export function absoluteAssetUrl(path: string): string {
   if (path.startsWith('http://') || path.startsWith('https://')) return path;
   const normalized = path.startsWith('/') ? path : `/${path}`;
   return `${SITE_ORIGIN}${normalized}`;
+}
+
+/**
+ * Map pruned source PNGs under /images/ to the kept -960.webp variant.
+ * Deploy drops large PNGs; WebP stays and works for OG/Twitter/schema.
+ */
+export function shareImagePath(path: string): string {
+  if (path.startsWith('http://') || path.startsWith('https://')) return path;
+  const normalized = path.startsWith('/') ? path : `/${path}`;
+  if (normalized === DEFAULT_OG_IMAGE) return normalized;
+  return normalized.replace(/^(\/images\/.+)\.png$/i, '$1-960.webp');
+}
+
+export function absoluteShareImageUrl(path: string): string {
+  return absoluteAssetUrl(shareImagePath(path));
 }
 
 export function resolvePageSeo(pathname: string): { title: string; description: string } {

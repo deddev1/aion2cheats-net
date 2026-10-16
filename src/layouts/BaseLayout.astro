@@ -10,7 +10,7 @@ import {
   DEFAULT_OG_IMAGE_HEIGHT,
   DEFAULT_OG_IMAGE_WIDTH,
   GA_MEASUREMENT_ID,
-  absoluteAssetUrl,
+  absoluteShareImageUrl,
 } from '../config/seo';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -41,7 +41,7 @@ const {
 } = Astro.props;
 
 const canonical = canonicalUrl(Astro.url.pathname);
-const ogImageUrl = absoluteAssetUrl(ogImage);
+const ogImageUrl = absoluteShareImageUrl(ogImage);
 const robotsContent = noindex
   ? 'noindex, nofollow'
   : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
