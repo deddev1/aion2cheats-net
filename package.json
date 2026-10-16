@@ -7,7 +7,8 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "node scripts/optimize-images.mjs && astro build && node scripts/prune-dist-images.mjs && node scripts/finalize-sitemap.mjs && node scripts/indexnow.mjs",
+    "build": "node scripts/optimize-images.mjs && astro build && node scripts/prune-dist-images.mjs && node scripts/finalize-sitemap.mjs && node scripts/verify-dist-assets.mjs && node scripts/indexnow.mjs",
+    "verify:assets": "node scripts/verify-dist-assets.mjs",
     "preview": "astro preview --host 0.0.0.0",
     "start": "node scripts/serve.mjs",
     "deploy": "wrangler deploy",

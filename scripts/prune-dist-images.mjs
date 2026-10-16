@@ -16,6 +16,8 @@ function walk(dir) {
       continue;
     }
     if (!/\.png$/i.test(entry.name)) continue;
+    // Never prune dedicated share/brand assets (OG lives at /og.jpg outside images/).
+    if (/^og[-.]/i.test(entry.name) || /share/i.test(entry.name)) continue;
     // Keep brand/favicon-sized assets if any land under images; gameplay/blog sources go.
     const stat = fs.statSync(full);
     if (stat.size < 80_000) continue;
