@@ -55,7 +55,7 @@ function cardLabel(product: (typeof productPages)[number]) {
                       class="catalog-card--carousel"
                       label={cardLabel(product)}
                       title={product.title}
-                      href={localizePath(locale, productPath(product.slug))}
+                      href={productPath(product.slug, locale)}
                       buyUrl={product.buyUrl}
                       features={product.features}
                       more={product.more}

@@ -4,6 +4,7 @@ import Icon from './icons/Icon.astro';
 import { Button } from '@/components/starwind/button';
 import { Prose } from '@/components/starwind/prose';
 import { ROUTES } from '../utils/path';
+import { getTranslations, localeFromPathname, localizePath } from '../i18n';
 
 interface Props {
   title: string;
@@ -13,17 +14,21 @@ interface Props {
 }
 
 const { title, description, breadcrumbLabel, sections } = Astro.props;
+const locale = localeFromPathname(Astro.url.pathname);
+const t = getTranslations(locale);
+const homeHref = localizePath(locale, ROUTES.home);
+const supportHref = localizePath(locale, ROUTES.support);
 ---
 
 <article class="py-8 md:py-12">
   <div class="mx-auto max-w-3xl px-5">
     <div class="text-left">
-    <Breadcrumbs
-      items={[
-        { name: 'Home', path: '/' },
-        { name: breadcrumbLabel, path: Astro.url.pathname },
-      ]}
-    />
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: homeHref },
+          { name: breadcrumbLabel, path: Astro.url.pathname },
+        ]}
+      />
     </div>
     <header class="mt-4 space-y-4 text-center">
       <h1 class="text-3xl font-bold normal-case md:text-4xl">{title}</h1>
@@ -31,22 +36,26 @@ const { title, description, breadcrumbLabel, sections } = Astro.props;
     </header>
 
     <Prose class="mt-10 max-w-none text-left">
-      {sections.map((section) => (
-        <section class="mt-8">
-          <h2>{section.heading}</h2>
-          {section.paragraphs.map((paragraph) => (
-            <p>{paragraph}</p>
-          ))}
-        </section>
-      ))}
+      {
+        sections.map((section) => (
+          <section class="mt-8">
+            <h2>{section.heading}</h2>
+            {section.paragraphs.map((paragraph) => (
+              <p>{paragraph}</p>
+            ))}
+          </section>
+        ))
+      }
     </Prose>
 
     <div class="mt-12 flex flex-wrap justify-center gap-3 border-t border-border pt-8">
-      <Button as="a" href={ROUTES.support} variant="primary" size="sm">
-        Contact support
+      <Button as="a" href={supportHref} variant="primary" size="sm">
+        {t.support.title}
         <Icon name="mail" size={16} />
       </Button>
-      <Button as="a" href={ROUTES.home} variant="outline" size="sm">Back to home</Button>
+      <Button as="a" href={homeHref} variant="outline" size="sm">
+        {t.ui.homeAria}
+      </Button>
     </div>
   </div>
 </article>

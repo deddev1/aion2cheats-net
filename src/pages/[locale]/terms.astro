@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import {
+  NON_DEFAULT_LOCALES,
+  getTranslations,
+  isLocale,
+  localizePath,
+} from '../../i18n';
+import { resolvePageSeo } from '../../config/seo';
+import LegalPage from '../../components/LegalPage.astro';
+import { breadcrumbSchema, webPageSchema } from '../../utils/schema';
+
+export function getStaticPaths() {
+  return NON_DEFAULT_LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const { locale: raw } = Astro.params;
+if (!isLocale(raw) || raw === 'en') return Astro.redirect('/terms/');
+const locale = raw;
+const t = getTranslations(locale);
+const content = t.legalPages.terms;
+const seo = resolvePageSeo('/terms/', locale);
+const path = localizePath(locale, '/terms/');
+---
+
+<BaseLayout
+  locale={locale}
+  title={seo.title}
+  description={seo.description}
+  jsonLd={[
+    webPageSchema({
+      name: content.title,
+      description: content.description,
+      url: path,
+    }),
+    breadcrumbSchema([
+      { name: 'Home', path: localizePath(locale, '/') },
+      { name: content.title, path },
+    ]),
+  ]}
+>
+  <LegalPage
+    title={content.title}
+    description={content.description}
+    breadcrumbLabel={content.title}
+    sections={content.sections}
+  />
+</BaseLayout>

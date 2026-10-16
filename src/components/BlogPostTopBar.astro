@@ -5,6 +5,7 @@ import { blogTagIcons } from '../data/sectionIcons';
 import type { BlogPost } from '../i18n/types';
 import type { IconName } from './icons/types';
 import { Badge } from '@/components/starwind/badge';
+import { getTranslations, localeFromPathname, localizePath } from '../i18n';
 
 interface Props {
   post: BlogPost;
@@ -12,13 +13,16 @@ interface Props {
 }
 
 const { post, class: className } = Astro.props;
+const locale = localeFromPathname(Astro.url.pathname);
+const t = getTranslations(locale);
 const tagIcon: IconName = blogTagIcons[post.tag] ?? 'tag';
+const blogHref = localizePath(locale, ROUTES.blog);
 ---
 
 <div class:list={['blog-article__toolbar', className]}>
-  <a href={ROUTES.blog} class="blog-article__toolbar-back shrink-0">
+  <a href={blogHref} class="blog-article__toolbar-back shrink-0">
     <Icon name="chevronLeft" size={15} aria-hidden="true" />
-    All articles
+    {t.blog.viewAll}
   </a>
   <div class="blog-article__toolbar-meta">
     <Badge variant="secondary" size="sm" class="blog-article__toolbar-badge max-w-[9rem] gap-1 rounded-full" title={post.tag}>

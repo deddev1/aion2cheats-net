@@ -14,6 +14,8 @@ import ProductFeaturesSection from './product/ProductFeaturesSection.astro';
 import ProductDescriptionSection from './product/ProductDescriptionSection.astro';
 import ProductExperienceSection from './product/ProductExperienceSection.astro';
 import ProductRelatedGuidesSection from './product/ProductRelatedGuidesSection.astro';
+import { getTranslations, localeFromPathname } from '../i18n';
+import { localizeFaqItems } from '../i18n/faq-full';
 
 interface Props {
   product: ProductPage;
@@ -21,7 +23,9 @@ interface Props {
 }
 
 const { product, breadcrumbs } = Astro.props;
-const productFaqs = getProductFaqs(product.slug, product.kind);
+const locale = localeFromPathname(Astro.url.pathname);
+const t = getTranslations(locale);
+const productFaqs = localizeFaqItems(locale, getProductFaqs(product.slug, product.kind));
 const relatedPosts = getRelatedBlogPostsForProduct(product.relatedBlogSlugs, 6);
 
 const descriptionBlocks = [
@@ -71,6 +75,9 @@ const showDescToggle = descriptionBlocks.length > 2;
   id="faq"
   items={productFaqs}
   titleId={`catalog-faq-${product.slug}`}
+  eyebrow={t.faq.eyebrow}
+  title={t.faq.title}
+  subtitle={t.faq.subtitle}
   class="border-t border-border bg-background"
 />
 </div>

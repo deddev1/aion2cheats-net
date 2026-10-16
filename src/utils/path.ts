@@ -1,4 +1,5 @@
 import { PRODUCT_BASE } from '../config/site';
+import { DEFAULT_LOCALE, localizePath, type Locale } from '../i18n/locales';
 
 /** Normalize internal paths to match trailingSlash: 'always' and canonical URLs. */
 export function withTrailingSlash(path: string): string {
@@ -55,15 +56,19 @@ export const ROUTES = {
   privacy: '/privacy/',
 } as const;
 
-export function blogPostPath(slug: string): string {
-  return `/blog/${slug}/`;
+export function blogPostPath(slug: string, locale: Locale = DEFAULT_LOCALE): string {
+  return localizePath(locale, `/blog/${slug}/`);
 }
 
 /** @deprecated Use productPath — cheat tier pages live under products. */
-export function cheatPath(slug: string): string {
-  return productPath(slug);
+export function cheatPath(slug: string, locale: Locale = DEFAULT_LOCALE): string {
+  return productPath(slug, locale);
 }
 
-export function productPath(slug: string): string {
-  return `${PRODUCT_BASE}${slug}/`;
+export function productPath(slug: string, locale: Locale = DEFAULT_LOCALE): string {
+  return localizePath(locale, `${PRODUCT_BASE}${slug}/`);
+}
+
+export function forumPostPath(slug: string, locale: Locale = DEFAULT_LOCALE): string {
+  return localizePath(locale, `/forum/${slug}/`);
 }

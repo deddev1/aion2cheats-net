@@ -1,0 +1,16 @@
+---
+import BlogPostPage from '../../../views/BlogPostPage.astro';
+import { getAllBlogSlugs } from '../../../data/blog';
+import { NON_DEFAULT_LOCALES, isLocale } from '../../../i18n';
+
+export function getStaticPaths() {
+  return NON_DEFAULT_LOCALES.flatMap((locale) =>
+    getAllBlogSlugs().map((slug) => ({ params: { locale, slug } })),
+  );
+}
+
+const { locale: raw, slug } = Astro.params;
+if (!isLocale(raw) || raw === 'en') return Astro.redirect(`/blog/${slug}/`);
+---
+
+<BlogPostPage slug={slug!} locale={raw} />

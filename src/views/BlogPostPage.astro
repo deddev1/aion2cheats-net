@@ -1,0 +1,217 @@
+---
+import '../styles/blog-pages.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import {
+  getTranslations,
+  localizePath,
+  type Locale,
+} from '../i18n';
+import { localizeFaqItems } from '../i18n/faq-full';
+import { getBlogPost, getRelatedBlogPosts, type BlogBlock } from '../data/blog';
+import { pageTitle } from '../config/seo';
+import { articleSchema, breadcrumbSchema, parseBlogDate } from '../utils/schema';
+import { checkoutPath, resolveCheckoutHref } from '../config/checkout';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import ResponsiveImage from '../components/ResponsiveImage.astro';
+import BlogSidebar from '../components/BlogSidebar.astro';
+import BlogPostTopBar from '../components/BlogPostTopBar.astro';
+import { getBlogFaqs } from '../data/faq';
+import SiteFaqSection from '../components/SiteFaqSection.astro';
+import Icon from '../components/icons/Icon.astro';
+import { Button } from '@/components/starwind/button';
+import { Prose } from '@/components/starwind/prose';
+import BlogPostCta from '../components/BlogPostCta.astro';
+import { blogPostPath, normalizeInternalPath, ROUTES } from '../utils/path';
+
+interface Props {
+  slug: string;
+  locale: Locale;
+}
+
+const { slug, locale } = Astro.props;
+const t = getTranslations(locale);
+const post = getBlogPost(slug);
+
+if (!post) {
+  return Astro.redirect(localizePath(locale, '/blog/'));
+}
+
+const postPath = blogPostPath(post.slug, locale);
+const breadcrumbs = [
+  { name: 'Home', path: localizePath(locale, '/') },
+  { name: t.blog.eyebrow, path: localizePath(locale, '/blog/') },
+  { name: post.title, path: postPath },
+];
+
+const related = getRelatedBlogPosts(post.slug, 3);
+const faqs = localizeFaqItems(locale, getBlogFaqs(post.tag, post.slug));
+
+function linkify(text: string): string {
+  return text
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_match, label: string, href: string) => {
+      const normalized = normalizeInternalPath(href);
+      const localized =
+        normalized.startsWith('http') || normalized.startsWith('mailto:')
+          ? normalized
+          : localizePath(locale, normalized);
+      return `<a href="${localized}">${label}</a>`;
+    })
+    .replace(/(https:\/\/aion2cheats\.net[^\s.,;)]*)/g, (_match, url: string) => {
+      const path = url.replace(/^https:\/\/aion2cheats\.net/, '');
+      const normalized = normalizeInternalPath(path);
+      const localized = normalized.startsWith('http')
+        ? normalized
+        : `https://aion2cheats.net${localizePath(locale, normalized)}`;
+      return `<a href="${localized}">${url}</a>`;
+    });
+}
+
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+}
+
+const published = parseBlogDate(post.date);
+---
+
+<BaseLayout
+  locale={locale}
+  title={pageTitle(post.title, undefined, locale)}
+  description={post.desc}
+  ogType="article"
+  ogImage={post.image}
+  ogImageAlt={`${post.title} — Aion 2 cheat gameplay screenshot`}
+  articlePublishedTime={published}
+  articleModifiedTime={published}
+  jsonLd={[
+    articleSchema({
+      name: post.title,
+      description: post.desc,
+      url: postPath,
+      image: post.image,
+      datePublished: published,
+    }),
+    breadcrumbSchema(breadcrumbs),
+  ]}
+>
+  <article class="py-8 md:py-12">
+    <div class="mx-auto max-w-6xl px-5">
+      <Breadcrumbs items={breadcrumbs} />
+
+      <BlogPostTopBar post={post} class="mt-6" />
+
+      <div class="blog-article__layout mt-4 grid gap-6 lg:grid-cols-[minmax(14rem,16.5rem)_minmax(0,1fr)] lg:items-start lg:gap-8 xl:grid-cols-[17.5rem_minmax(0,1fr)]">
+        <BlogSidebar post={post} related={related} class="order-2 lg:order-1" />
+
+        <div class="order-1 min-w-0 lg:order-2">
+          <figure class="blog-article__hero">
+            <ResponsiveImage
+              src={post.image}
+              alt={`${post.title} — Aion 2 cheat gameplay screenshot`}
+              width={960}
+              height={540}
+              loading="eager"
+              fetchPriority="high"
+              sizes="(min-width: 768px) 720px, 100vw"
+              class="w-full object-cover"
+            />
+          </figure>
+
+          <header class="blog-article__header">
+            <h1 class="blog-article__title">{post.title}</h1>
+            <p class="blog-article__lead">{post.desc}</p>
+            {
+              post.author && (
+                <p class="blog-article__byline">
+                  <Icon name="users" size={14} />
+                  {post.author}
+                </p>
+              )
+            }
+          </header>
+
+          <Prose class="blog-article__prose prose-headings:scroll-mt-24 max-w-none text-left">
+            {post.body.map((block: BlogBlock) => {
+              if (block.type === 'h2') {
+                const id = slugify(block.text);
+                return <h2 id={id}>{block.text}</h2>;
+              }
+              if (block.type === 'h3') {
+                const id = slugify(block.text);
+                return <h3 id={id}>{block.text}</h3>;
+              }
+              if (block.type === 'ul') {
+                return (
+                  <ul>
+                    {block.items.map((item) => (
+                      <li set:html={linkify(item)} />
+                    ))}
+                  </ul>
+                );
+              }
+              if (block.type === 'table') {
+                return (
+                  <div class="overflow-x-auto">
+                    <table>
+                      <thead>
+                        <tr>
+                          {block.headers.map((header) => (
+                            <th>{header}</th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {block.rows.map((row) => (
+                          <tr>
+                            {row.map((cell) => (
+                              <td set:html={linkify(cell)} />
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                );
+              }
+              if (block.type === 'cta') {
+                return (
+                  <BlogPostCta
+                    title={block.title}
+                    html={linkify(block.text)}
+                    href={resolveCheckoutHref(block.href)}
+                  />
+                );
+              }
+              return <p set:html={linkify(block.text)} />;
+            })}
+          </Prose>
+
+          <nav class="blog-article__actions" aria-label="Continue reading">
+            <Button as="a" href={checkoutPath('aion2')} variant="primary" aria-label={t.ui.checkoutAria}>
+              {t.ui.browseCheats}
+              <Icon name="arrowRight" size={17} />
+            </Button>
+            <Button as="a" href={localizePath(locale, ROUTES.products)} variant="outline">
+              {t.products.viewAll}
+            </Button>
+            <Button as="a" href={localizePath(locale, ROUTES.blog)} variant="outline">
+              {t.blog.viewAll}
+              <Icon name="arrowRight" size={17} />
+            </Button>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <SiteFaqSection
+    items={faqs}
+    titleId={`blog-faq-${post.slug}`}
+    eyebrow={t.faq.eyebrow}
+    title={t.faq.title}
+    subtitle={t.faq.subtitle}
+    class="border-t border-border bg-muted/20"
+  />
+</BaseLayout>

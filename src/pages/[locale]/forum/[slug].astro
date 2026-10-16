@@ -1,0 +1,16 @@
+---
+import ForumPostPage from '../../../views/ForumPostPage.astro';
+import { forumPosts } from '../../../data/forum';
+import { NON_DEFAULT_LOCALES, isLocale } from '../../../i18n';
+
+export function getStaticPaths() {
+  return NON_DEFAULT_LOCALES.flatMap((locale) =>
+    forumPosts.map((post) => ({ params: { locale, slug: post.slug } })),
+  );
+}
+
+const { locale: raw, slug } = Astro.params;
+if (!isLocale(raw) || raw === 'en') return Astro.redirect(`/forum/${slug}/`);
+---
+
+<ForumPostPage slug={slug!} locale={raw} />

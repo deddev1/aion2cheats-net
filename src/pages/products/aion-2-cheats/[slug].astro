@@ -4,11 +4,14 @@ import { getAllProductSlugs, getProductPage, productHub } from '../../../data/pr
 import { pageTitle } from '../../../config/seo';
 import { breadcrumbSchema, productSchema } from '../../../utils/schema';
 import ProductDetail from '../../../components/ProductDetail.astro';
+import { getTranslations } from '../../../i18n';
 
 export function getStaticPaths() {
   return getAllProductSlugs().map((slug) => ({ params: { slug } }));
 }
 
+const locale = 'en' as const;
+const t = getTranslations(locale);
 const { slug } = Astro.params;
 const product = getProductPage(slug!);
 
@@ -19,13 +22,14 @@ if (!product) {
 const pagePath = `${productHub.path}${product.slug}/`;
 const breadcrumbs = [
   { name: 'Home', path: '/' },
-  { name: 'Products', path: productHub.path },
+  { name: t.products.eyebrow, path: productHub.path },
   { name: product.title, path: pagePath },
 ];
 ---
 
 <BaseLayout
-  title={pageTitle(product.title)}
+  locale={locale}
+  title={pageTitle(product.title, undefined, locale)}
   description={product.desc}
   jsonLd={[
     productSchema({

@@ -6,27 +6,37 @@ import { breadcrumbSchema, faqPageSchema, webPageSchema } from '../utils/schema'
 import Breadcrumbs from '../components/Breadcrumbs.astro';
 import SiteFaqSection from '../components/SiteFaqSection.astro';
 import SectionHeader from '../components/SectionHeader.astro';
+import { getTranslations } from '../i18n';
+import { localizeFaqItems } from '../i18n/faq-full';
 
-const seo = resolvePageSeo('/faq/');
+const locale = 'en' as const;
+const t = getTranslations(locale);
+const seo = resolvePageSeo('/faq/', locale);
 const breadcrumbs = [
   { name: 'Home', path: '/' },
-  { name: 'FAQ', path: '/faq/' },
+  { name: t.faq.eyebrow, path: '/faq/' },
 ];
 
-const faqs = getAllFaqs();
+const faqs = localizeFaqItems(locale, getAllFaqs());
 ---
 
 <BaseLayout
+  locale={locale}
   title={seo.title}
   description={seo.description}
   jsonLd={[
     webPageSchema({
-      name: 'FAQ — Aion 2 Cheats & Products',
-      description:
-        'Answers about Aion 2 cheat tiers, ESP wallhack, aimbot, HWID tools, blog guides and checkout at aion2cheats.net.',
+      name: seo.title,
+      description: seo.description,
       url: '/faq/',
     }),
-    faqPageSchema(faqs.map((f, i) => ({ num: String(i + 1).padStart(2, '0'), q: f.q, a: f.a.replace(/<[^>]+>/g, '') }))),
+    faqPageSchema(
+      faqs.map((f, i) => ({
+        num: String(i + 1).padStart(2, '0'),
+        q: f.q,
+        a: f.a.replace(/<[^>]+>/g, ''),
+      })),
+    ),
     breadcrumbSchema(breadcrumbs),
   ]}
 >
@@ -35,14 +45,21 @@ const faqs = getAllFaqs();
       <Breadcrumbs items={breadcrumbs} />
       <div class="mt-6">
         <SectionHeader
-          eyebrow="Help center"
-          title="FAQ for cheats, products & guides"
-          desc="Everything about Lite, Pro, Elite tiers, utilities, safety and blog topics—in one place."
+          eyebrow={t.faq.eyebrow}
+          title={t.faq.title}
+          desc={t.faq.subtitle}
           titleId="faq-page-title"
         />
       </div>
     </div>
   </section>
 
-  <SiteFaqSection items={faqs} variant="full" titleId="faq-page-list" />
+  <SiteFaqSection
+    items={faqs}
+    variant="full"
+    titleId="faq-page-list"
+    eyebrow={t.faq.eyebrow}
+    title={t.faq.title}
+    subtitle={t.faq.subtitle}
+  />
 </BaseLayout>

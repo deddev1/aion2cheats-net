@@ -1,15 +1,18 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { t } from '../i18n';
+import { getTranslations } from '../i18n';
 import { resolvePageSeo } from '../config/seo';
 import LegalPage from '../components/LegalPage.astro';
 import { breadcrumbSchema, webPageSchema } from '../utils/schema';
 
+const locale = 'en' as const;
+const t = getTranslations(locale);
 const content = t.legalPages.terms;
-const seo = resolvePageSeo('/terms/');
+const seo = resolvePageSeo('/terms/', locale);
 ---
 
 <BaseLayout
+  locale={locale}
   title={seo.title}
   description={seo.description}
   jsonLd={[
@@ -20,14 +23,14 @@ const seo = resolvePageSeo('/terms/');
     }),
     breadcrumbSchema([
       { name: 'Home', path: '/' },
-      { name: 'Terms & Conditions', path: '/terms/' },
+      { name: content.title, path: '/terms/' },
     ]),
   ]}
 >
   <LegalPage
     title={content.title}
     description={content.description}
-    breadcrumbLabel="Terms & Conditions"
+    breadcrumbLabel={content.title}
     sections={content.sections}
   />
 </BaseLayout>

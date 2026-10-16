@@ -1,0 +1,13 @@
+---
+import ForumIndexPage from '../../../views/ForumIndexPage.astro';
+import { NON_DEFAULT_LOCALES, isLocale } from '../../../i18n';
+
+export function getStaticPaths() {
+  return NON_DEFAULT_LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const { locale: raw } = Astro.params;
+if (!isLocale(raw) || raw === 'en') return Astro.redirect('/forum/');
+---
+
+<ForumIndexPage locale={raw} />

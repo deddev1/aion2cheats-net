@@ -29,7 +29,7 @@ interface Props {
 const { post, index = 0, eager = false, showDate = false, layout = 'default', class: className } =
   Astro.props;
 const isFeatured = layout === 'featured';
-const href = blogPostPath(post.slug);
+const href = blogPostPath(post.slug, locale);
 const timestamp = getBlogPostTimestamp(post.date);
 const readMinutes = getBlogReadMinutes(post.readTime);
 const tagIcon: IconName = blogTagIcons[post.tag] ?? 'tag';

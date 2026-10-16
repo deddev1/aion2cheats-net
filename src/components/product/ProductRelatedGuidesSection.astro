@@ -5,6 +5,7 @@ import BlogCard from '../BlogCard.astro';
 import { Button } from '@/components/starwind/button';
 import Icon from '../icons/Icon.astro';
 import { ROUTES } from '../../utils/path';
+import { getTranslations, localeFromPathname, localizePath } from '../../i18n';
 
 interface Props {
   posts: BlogPost[];
@@ -12,6 +13,9 @@ interface Props {
 }
 
 const { posts, productName } = Astro.props;
+const locale = localeFromPathname(Astro.url.pathname);
+const t = getTranslations(locale);
+const blogHref = localizePath(locale, ROUTES.blog);
 ---
 
 {
@@ -19,9 +23,9 @@ const { posts, productName } = Astro.props;
     <section class="border-t border-border bg-muted/20 py-16 md:py-24" aria-labelledby="related-guides-heading">
       <div class="mx-auto max-w-6xl px-5">
         <SectionHeader
-          eyebrow="Guides"
-          title={`Learn more about ${productName}`}
-          desc="Curated articles for setup, tuning, and patch-day checks that match this product."
+          eyebrow={t.blog.eyebrow}
+          title={`${t.blog.read}: ${productName}`}
+          desc={t.blog.subtitle}
           titleId="related-guides-heading"
         />
 
@@ -32,8 +36,8 @@ const { posts, productName } = Astro.props;
         </div>
 
         <div class="mt-12 flex justify-start lg:justify-center">
-          <Button as="a" href={ROUTES.blog} variant="outline" class="rounded-full">
-            Browse all guides
+          <Button as="a" href={blogHref} variant="outline" class="rounded-full">
+            {t.blog.viewAll}
             <Icon name="arrowRight" size={17} />
           </Button>
         </div>
