@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getAllFaqs } from '../../data/faq';
+import { resolvePageSeo } from '../../config/seo';
+import { breadcrumbSchema, faqPageSchema, webPageSchema } from '../../utils/schema';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SiteFaqSection from '../../components/SiteFaqSection.astro';
+import SectionHeader from '../../components/SectionHeader.astro';
+import {
+  NON_DEFAULT_LOCALES,
+  getTranslations,
+  isLocale,
+  localizePath,
+} from '../../i18n';
+import { localizeFaqItems } from '../../i18n/faq-full';
+
+export function getStaticPaths() {
+  return NON_DEFAULT_LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const { locale: raw } = Astro.params;
+if (!isLocale(raw) || raw === 'en') return Astro.redirect('/faq/');
+
+const locale = raw;
+const t = getTranslations(locale);
+const seo = resolvePageSeo('/faq/', locale);
+const faqPath = localizePath(locale, '/faq/');
+const breadcrumbs = [
+  { name: 'Home', path: localizePath(locale, '/') },
+  { name: t.faq.eyebrow, path: faqPath },
+];
+
+/** Keep icons/topics from English FAQ data; overlay strong priority-market Q&A. */
+const faqs = localizeFaqItems(locale, getAllFaqs());
+---
+
+<BaseLayout
+  locale={locale}
+  title={seo.title}
+  description={seo.description}
+  jsonLd={[
+    webPageSchema({
+      name: seo.title,
+      description: seo.description,
+      url: faqPath,
+    }),
+    faqPageSchema(
+      faqs.map((f, i) => ({
+        num: String(i + 1).padStart(2, '0'),
+        q: f.q,
+        a: f.a.replace(/<[^>]+>/g, ''),
+      })),
+    ),
+    breadcrumbSchema(breadcrumbs),
+  ]}
+>
+  <section class="border-b border-border bg-muted/10 py-8 md:py-12">
+    <div class="mx-auto max-w-6xl px-5">
+      <Breadcrumbs items={breadcrumbs} />
+      <div class="mt-6">
+        <SectionHeader
+          eyebrow={t.faq.eyebrow}
+          title={t.faq.title}
+          desc={t.faq.subtitle}
+          titleId="faq-page-title"
+        />
+      </div>
+    </div>
+  </section>
+
+  <SiteFaqSection
+    items={faqs}
+    variant="full"
+    titleId="faq-page-list"
+    eyebrow={t.faq.eyebrow}
+    title={t.faq.title}
+    subtitle={t.faq.subtitle}
+  />
+</BaseLayout>

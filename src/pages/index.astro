@@ -1,26 +1,5 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
-import HeroSection from '../components/HeroSection.astro';
-import FeaturesSection from '../components/FeaturesSection.astro';
-import WhySetupSection from '../components/WhySetupSection.astro';
-import ProductsSection from '../components/ProductsSection.astro';
-import ContentSections from '../components/ContentSections.astro';
-import { resolvePageSeo } from '../config/seo';
-import { faqPageSchema, organizationSchema, websiteSchema } from '../utils/schema';
-import { getLandingFaqs } from '../data/faq';
-
-const seo = resolvePageSeo('/');
-const homeFaqs = getLandingFaqs();
+import HomePage from '../views/HomePage.astro';
 ---
 
-<BaseLayout
-  title={seo.title}
-  description={seo.description}
-  jsonLd={[websiteSchema(), organizationSchema(), faqPageSchema(homeFaqs.map((f, i) => ({ num: String(i + 1).padStart(2, '0'), q: f.q, a: f.a.replace(/<[^>]+>/g, '') })))]}
->
-  <HeroSection />
-  <FeaturesSection />
-  <ProductsSection />
-  <WhySetupSection />
-  <ContentSections />
-</BaseLayout>
+<HomePage locale="en" />

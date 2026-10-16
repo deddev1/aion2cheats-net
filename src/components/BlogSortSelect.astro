@@ -1,5 +1,7 @@
 ---
-import { t } from '../i18n';
+import { getTranslations, localeFromPathname } from '../i18n';
+const locale = localeFromPathname(Astro.url.pathname);
+const t = getTranslations(locale);
 import Icon from './icons/Icon.astro';
 import type { IconName } from './icons/types';
 import {

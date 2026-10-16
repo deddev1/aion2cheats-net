@@ -33,6 +33,20 @@ export default defineConfig({
     sitemap({
       filter: (page) => !page.includes('/404') && !page.includes('/go/'),
       serialize: sitemapSerialize,
+      i18n: {
+        defaultLocale: 'en',
+        locales: {
+          en: 'en-US',
+          ko: 'ko-KR',
+          'zh-tw': 'zh-TW',
+          de: 'de-DE',
+          'pt-br': 'pt-BR',
+          th: 'th-TH',
+          ja: 'ja-JP',
+          es: 'es-ES',
+          fr: 'fr-FR',
+        },
+      },
     }),
   ],
   vite: {

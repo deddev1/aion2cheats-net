@@ -16,6 +16,10 @@ interface Props {
   /** Full /faq/ experience — all topics chip bar */
   variant?: 'full' | 'contextual';
   filterTopics?: FaqTopic[];
+  /** Optional i18n overrides for section header copy */
+  eyebrow?: string;
+  title?: string;
+  subtitle?: string;
 }
 
 const {
@@ -25,6 +29,9 @@ const {
   class: className,
   variant = 'contextual',
   filterTopics: filterTopicsProp,
+  eyebrow: eyebrowProp,
+  title: titleProp,
+  subtitle: subtitleProp,
 } = Astro.props;
 
 const copy = variant === 'full' ? SITE_FAQ_SECTION_COPY : CONTEXTUAL_FAQ_SECTION_COPY;
@@ -36,9 +43,9 @@ const showFilters = filterTopics.length > 1;
 <FaqSection
   id={id}
   items={items}
-  eyebrow={copy.eyebrow}
-  title={copy.title}
-  subtitle={copy.subtitle}
+  eyebrow={eyebrowProp ?? copy.eyebrow}
+  title={titleProp ?? copy.title}
+  subtitle={subtitleProp ?? copy.subtitle}
   titleId={titleId}
   showFilters={showFilters}
   filterTopics={filterTopics}

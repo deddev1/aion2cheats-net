@@ -1,5 +1,5 @@
 ---
-import { t } from '../i18n';
+import { getTranslations, localeFromPathname, localizePath } from '../i18n';
 import { ROUTES } from '../utils/path';
 import { heroSlides } from '../data/products';
 import { compatibilityIcons, heroStatIcons, heroStatusPills } from '../data/sectionIcons';
@@ -8,7 +8,10 @@ import Icon from './icons/Icon.astro';
 import { Button } from '@/components/starwind/button';
 import { Badge } from '@/components/starwind/badge';
 
+const locale = localeFromPathname(Astro.url.pathname);
+const t = getTranslations(locale);
 const h = t.hero;
+
 
 const heroMarqueePills = [
   ...heroStatusPills,
@@ -45,7 +48,7 @@ const heroMarqueePills = [
         <div class="flex flex-wrap justify-start gap-3 sm:gap-4">
           <Button
             as="a"
-            href={ROUTES.products}
+            href={localizePath(locale, ROUTES.products)}
             data-scroll-target="products"
             variant="primary"
             size="lg"

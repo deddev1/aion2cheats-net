@@ -1,0 +1,151 @@
+---
+import '../../../styles/blog-pages.css';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import {
+  blogPosts,
+  getBlogTags,
+  getFeaturedBlogPost,
+  getNonFeaturedBlogPosts,
+} from '../../../data/blog';
+import { resolvePageSeo } from '../../../config/seo';
+import { breadcrumbSchema, collectionPageSchema } from '../../../utils/schema';
+import { CARD_IMAGE_WIDTHS, webpSrc } from '../../../utils/responsiveImage';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import BlogCard from '../../../components/BlogCard.astro';
+import BlogSortSelect from '../../../components/BlogSortSelect.astro';
+import Icon from '../../../components/icons/Icon.astro';
+import { blogTagIcons } from '../../../data/sectionIcons';
+import type { IconName } from '../../../components/icons/types';
+import { Button } from '@/components/starwind/button';
+import {
+  NON_DEFAULT_LOCALES,
+  getTranslations,
+  isLocale,
+  localizePath,
+} from '../../../i18n';
+
+export function getStaticPaths() {
+  return NON_DEFAULT_LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const { locale: raw } = Astro.params;
+if (!isLocale(raw) || raw === 'en') return Astro.redirect('/blog/');
+const locale = raw;
+const t = getTranslations(locale);
+const seo = resolvePageSeo('/blog/', locale);
+const blogPath = localizePath(locale, '/blog/');
+const breadcrumbs = [
+  { name: 'Home', path: localizePath(locale, '/') },
+  { name: t.blog.eyebrow, path: blogPath },
+];
+
+const featured = getFeaturedBlogPost();
+const gridPosts = getNonFeaturedBlogPosts();
+const tags = getBlogTags();
+const lcpImage = webpSrc(featured?.image ?? blogPosts[0]!.image, CARD_IMAGE_WIDTHS[0]);
+const tagIcon = (tag: string): IconName => blogTagIcons[tag] ?? 'tag';
+---
+
+<BaseLayout
+  locale={locale}
+  title={seo.title}
+  description={seo.description}
+  jsonLd={[
+    collectionPageSchema({
+      name: t.blog.title,
+      description: t.blog.subtitle,
+      url: blogPath,
+    }),
+    breadcrumbSchema(breadcrumbs),
+  ]}
+>
+  <link slot="head" rel="preload" as="image" href={lcpImage} type="image/webp" fetchpriority="high" />
+
+  <section class="py-8 md:py-12">
+    <div class="mx-auto max-w-6xl px-5">
+      <Breadcrumbs items={breadcrumbs} />
+    </div>
+  </section>
+
+  <section
+    class="border-y border-border bg-muted/20 py-12 md:py-16"
+    aria-labelledby="blog-latest-title"
+    data-blog-index
+    data-empty-message={t.blog.emptyFilter}
+  >
+    <div class="mx-auto max-w-6xl px-5">
+      <header class="section-header max-w-2xl">
+        <p class="section-header__eyebrow">{t.blog.eyebrow}</p>
+        <h1 id="blog-latest-title" class="section-header__title">{t.blog.latestTitle}</h1>
+        <p class="section-header__subtitle">{t.blog.latestSubtitle}</p>
+      </header>
+
+      <div class="mt-8 flex flex-col gap-4 lg:mt-10 lg:flex-row lg:items-end lg:justify-between lg:gap-6">
+        <div
+          class="flex gap-2 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          role="toolbar"
+          aria-label="Filter articles by topic"
+          data-blog-filters
+        >
+          <button
+            type="button"
+            class="blog-filter is-active inline-flex shrink-0 items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium shadow-xs hover:bg-muted"
+            data-blog-filter="all"
+            aria-pressed="true"
+          >
+            <span class="flex size-7 items-center justify-center rounded-full bg-muted text-primary" aria-hidden="true">
+              <Icon name="navBlog" size={15} />
+            </span>
+            {t.blog.filterAll}
+          </button>
+          {
+            tags.map((tag) => (
+              <button
+                type="button"
+                class="blog-filter inline-flex shrink-0 items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium shadow-xs hover:bg-muted"
+                data-blog-filter={tag}
+                aria-pressed="false"
+              >
+                <span class="flex size-7 items-center justify-center rounded-full bg-muted text-primary" aria-hidden="true">
+                  <Icon name={tagIcon(tag)} size={15} />
+                </span>
+                {tag}
+              </button>
+            ))
+          }
+        </div>
+        <BlogSortSelect />
+      </div>
+
+      {
+        featured && (
+          <div id="blog-featured" class="mt-10" data-blog-featured>
+            <BlogCard post={featured} index={0} eager showDate layout="featured" />
+          </div>
+        )
+      }
+
+      <div id="blog-grid" class="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-10">
+        {gridPosts.map((post, index) => (
+          <BlogCard post={post} index={index} showDate />
+        ))}
+      </div>
+
+      <p id="blog-empty" class="mt-10 hidden text-center text-muted-foreground" role="status">
+        {t.blog.emptyFilter}
+      </p>
+
+      <div class="mt-12 flex justify-start lg:justify-center">
+        <Button as="a" href={localizePath(locale, '/')} variant="outline">
+          <Icon name="chevronLeft" size={16} />
+          {t.ui.homeAria}
+        </Button>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    import { setupBlogIndexFilters } from '../../../scripts/blog-index.ts';
+    setupBlogIndexFilters();
+  </script>
+</BaseLayout>

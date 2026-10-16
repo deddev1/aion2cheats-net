@@ -1,5 +1,7 @@
 ---
-import { t } from '../i18n';
+import { getTranslations, localeFromPathname, localizePath } from '../i18n';
+const locale = localeFromPathname(Astro.url.pathname);
+const t = getTranslations(locale);
 import { cheatPages } from '../data/products';
 import { cheatTierIcons } from '../data/sectionIcons';
 import SectionHeader from './SectionHeader.astro';

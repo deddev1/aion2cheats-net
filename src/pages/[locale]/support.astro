@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { resolvePageSeo } from '../../config/seo';
+import { breadcrumbSchema, webPageSchema } from '../../utils/schema';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import ContactSupportSection from '../../components/ContactSupportSection.astro';
+import {
+  NON_DEFAULT_LOCALES,
+  getTranslations,
+  isLocale,
+  localizePath,
+} from '../../i18n';
+
+export function getStaticPaths() {
+  return NON_DEFAULT_LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const { locale: raw } = Astro.params;
+if (!isLocale(raw) || raw === 'en') return Astro.redirect('/support/');
+const locale = raw;
+const t = getTranslations(locale);
+const seo = resolvePageSeo('/support/', locale);
+const path = localizePath(locale, '/support/');
+const breadcrumbs = [
+  { name: 'Home', path: localizePath(locale, '/') },
+  { name: t.support.eyebrow, path },
+];
+---
+
+<BaseLayout
+  locale={locale}
+  title={seo.title}
+  description={seo.description}
+  jsonLd={[
+    webPageSchema({ name: seo.title, description: seo.description, url: path }),
+    breadcrumbSchema(breadcrumbs),
+  ]}
+>
+  <section class="py-8 md:py-12">
+    <div class="mx-auto max-w-6xl px-5">
+      <Breadcrumbs items={breadcrumbs} />
+    </div>
+  </section>
+  <ContactSupportSection />
+</BaseLayout>

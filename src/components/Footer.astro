@@ -1,18 +1,31 @@
 ---
-import { t } from '../i18n';
+import {
+  getTranslations,
+  localizePath,
+  resolveLocale,
+  type Locale,
+} from '../i18n';
 import { Separator } from '@/components/starwind/separator';
 
+interface Props {
+  locale?: Locale;
+}
+
+const locale = resolveLocale(Astro.props.locale);
+const t = getTranslations(locale);
+const L = (path: string) => localizePath(locale, path);
+
 const resourceLinks = [
-  { href: '/blog/', label: 'Blog archive', ariaLabel: 'Blog' },
-  { href: '/products/aion-2-cheats/elite/', label: 'Elite cheats', ariaLabel: 'Elite cheats' },
-  { href: '/products/aion-2-cheats/', label: 'Products & utilities', ariaLabel: 'Products' },
-  { href: '/support/', label: t.footer.support },
+  { href: L('/blog/'), label: t.blog.viewAll, ariaLabel: t.blog.eyebrow },
+  { href: L('/products/aion-2-cheats/elite/'), label: t.cheats.title, ariaLabel: t.cheats.title },
+  { href: L('/products/aion-2-cheats/'), label: t.products.viewAll, ariaLabel: t.products.eyebrow },
+  { href: L('/support/'), label: t.footer.support },
 ];
 
 const legalLinks = [
-  { href: '/about/', label: t.footer.about },
-  { href: '/privacy/', label: t.footer.privacy },
-  { href: '/terms/', label: t.footer.terms },
+  { href: L('/about/'), label: t.footer.about },
+  { href: L('/privacy/'), label: t.footer.privacy },
+  { href: L('/terms/'), label: t.footer.terms },
 ];
 ---
 
@@ -20,7 +33,7 @@ const legalLinks = [
   <div class="mx-auto max-w-6xl px-5">
     <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
       <div class="space-y-4">
-        <a href="/" class="inline-flex items-center gap-2.5 font-[family-name:var(--font-heading)] text-lg font-bold" aria-label={t.ui.homeAria}>
+        <a href={L('/')} class="inline-flex items-center gap-2.5 font-[family-name:var(--font-heading)] text-lg font-bold" aria-label={t.ui.homeAria}>
           <img src="/logo.svg" alt="" width="32" height="32" class="rounded-md" />
           <span aria-hidden="true">Aion 2<span class="text-primary">Cheats</span></span>
         </a>
@@ -33,7 +46,7 @@ const legalLinks = [
           {t.footer.exploreLinks.map((link) => (
             <li>
               <a
-                href={link.href}
+                href={L(link.href)}
                 class="text-sm text-muted-foreground hover:text-primary"
                 aria-label={link.ariaLabel}
                 {...(link.scrollTarget ? { 'data-scroll-target': link.scrollTarget } : {})}

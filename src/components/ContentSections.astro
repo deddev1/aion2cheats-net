@@ -1,5 +1,5 @@
 ---
-import { t } from '../i18n';
+import { getTranslations, localeFromPathname, localizePath } from '../i18n';
 import { getFeaturedBlogPosts } from '../data/blog';
 import WorkflowSection from './WorkflowSection.astro';
 import SectionHeader from './SectionHeader.astro';
@@ -10,7 +10,9 @@ import SiteFaqSection from './SiteFaqSection.astro';
 import { getLandingFaqs } from '../data/faq';
 import { Button } from '@/components/starwind/button';
 
-const homeFaqs = getLandingFaqs();
+const locale = localeFromPathname(Astro.url.pathname);
+const t = getTranslations(locale);
+const homeFaqs = t.faq.items.length ? t.faq.items : getLandingFaqs();
 const featuredPosts = getFeaturedBlogPosts(3);
 ---
 
@@ -27,7 +29,7 @@ const featuredPosts = getFeaturedBlogPosts(3);
     </div>
 
     <div class="mt-10 flex justify-start lg:justify-center">
-      <Button as="a" href={ROUTES.blog} variant="outline">
+      <Button as="a" href={localizePath(locale, ROUTES.blog)} variant="outline">
         {t.blog.viewAll}
         <Icon name="arrowRight" size={17} />
       </Button>

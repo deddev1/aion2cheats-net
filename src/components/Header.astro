@@ -1,8 +1,14 @@
 ---
-import { t } from '../i18n';
+import {
+  getTranslations,
+  localizePath,
+  resolveLocale,
+  type Locale,
+} from '../i18n';
 import { checkoutPath } from '../config/checkout';
 import { Button } from '@/components/starwind/button';
 import AnimatedThemeSwitch from './AnimatedThemeSwitch.astro';
+import LanguageSwitcher from './LanguageSwitcher.astro';
 import {
   Sheet,
   SheetContent,
@@ -12,18 +18,35 @@ import {
 } from '@/components/starwind/sheet';
 import Icon from './icons/Icon.astro';
 import SlideRevealButton from './SlideRevealButton.astro';
-
 import type { IconName } from './icons/types';
+import { PRODUCT_BASE } from '../config/site';
 
-const navIcons: Record<string, IconName> = {
-  Products: 'navProducts',
-  Blog: 'navBlog',
-  Forum: 'messageCircle',
-  FAQ: 'navFaq',
-  Support: 'navSupport',
+interface Props {
+  locale?: Locale;
+}
+
+const locale = resolveLocale(Astro.props.locale);
+const t = getTranslations(locale);
+const homeHref = localizePath(locale, '/');
+
+const navIconsByHref: Record<string, IconName> = {
+  [PRODUCT_BASE]: 'navProducts',
+  '/blog/': 'navBlog',
+  '/forum/': 'messageCircle',
+  '/faq/': 'navFaq',
+  '/support/': 'navSupport',
 };
 
 const purchaseUrl = checkoutPath('aion2');
+const nav = t.nav.map((link) => {
+  const bareHref = link.href;
+  return {
+    ...link,
+    bareHref,
+    href: localizePath(locale, bareHref),
+    icon: (navIconsByHref[bareHref] ?? 'navFeatures') as IconName,
+  };
+});
 ---
 
 <header class="pointer-events-none fixed inset-x-0 top-0 z-50">
@@ -31,19 +54,19 @@ const purchaseUrl = checkoutPath('aion2');
     <div
       class="pointer-events-auto relative flex h-14 w-full max-w-6xl items-center justify-between gap-3 rounded-2xl border border-border/40 bg-background/35 px-4 text-foreground shadow-md shadow-black/5 backdrop-blur-2xl supports-[backdrop-filter]:bg-background/25 dark:border-white/10 dark:bg-background/20 dark:shadow-black/25 sm:px-5 lg:h-[3.75rem]"
     >
-    <a href="/" class="inline-flex min-w-0 items-center font-[family-name:var(--font-heading)] text-lg font-bold tracking-wide" aria-label={t.ui.homeAria}>
+    <a href={homeHref} class="inline-flex min-w-0 items-center font-[family-name:var(--font-heading)] text-lg font-bold tracking-wide" aria-label={t.ui.homeAria}>
       <span class="truncate" aria-hidden="true">Aion 2<span class="text-primary">Cheats</span></span>
     </a>
 
     <nav class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-6 lg:flex" aria-label="Primary">
-      {t.nav.map((link) => (
+      {nav.map((link) => (
         <a
           href={link.href}
           class="nav-link inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
           data-nav-link
           {...(link.scrollTarget ? { 'data-scroll-target': link.scrollTarget } : {})}
         >
-          <Icon name={navIcons[link.label] ?? 'navFeatures'} size={16} />
+          <Icon name={link.icon} size={16} />
           {link.label}
         </a>
       ))}
@@ -51,6 +74,7 @@ const purchaseUrl = checkoutPath('aion2');
 
     <div class="flex items-center gap-2">
       <div class="hidden items-center sm:flex">
+        <LanguageSwitcher locale={locale} class="mr-1" />
         <SlideRevealButton href={purchaseUrl} class="hidden lg:inline-flex" ariaLabel={t.ui.checkoutAria}>
           {t.ui.browseCheats}
         </SlideRevealButton>
@@ -72,18 +96,21 @@ const purchaseUrl = checkoutPath('aion2');
             <SheetTitle>{t.site.name}</SheetTitle>
           </SheetHeader>
           <nav class="flex flex-col gap-1" aria-label="Mobile">
-            {t.nav.map((link) => (
+            {nav.map((link) => (
               <a
                 href={link.href}
                 class="nav-link flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
                 data-nav-link
                 {...(link.scrollTarget ? { 'data-scroll-target': link.scrollTarget } : {})}
               >
-                <Icon name={navIcons[link.label] ?? 'navFeatures'} size={16} />
+                <Icon name={link.icon} size={16} />
                 {link.label}
               </a>
             ))}
           </nav>
+          <div class="px-1">
+            <LanguageSwitcher locale={locale} compact class="w-full [&_.lang-switcher__trigger]:w-full [&_.lang-switcher__trigger]:justify-between" />
+          </div>
           <Button as="a" href={purchaseUrl} variant="primary" class="w-full justify-center" aria-label={t.ui.checkoutAria}>
             {t.ui.browseCheatsMobile}
           </Button>

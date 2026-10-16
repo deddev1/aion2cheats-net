@@ -1,5 +1,5 @@
 ---
-import { t } from "../i18n";
+import { getTranslations, localeFromPathname, localizePath } from "../i18n";
 import { setupStepIcons } from "../data/sectionIcons";
 import Icon from "./icons/Icon.astro";
 import { Button } from "@/components/starwind/button";
@@ -11,6 +11,8 @@ import {
   CardTitle,
 } from "@/components/starwind/card";
 
+const locale = localeFromPathname(Astro.url.pathname);
+const t = getTranslations(locale);
 const why = t.whyUs;
 const lastRowIndex = why.rows.length - 1;
 ---
@@ -235,7 +237,7 @@ const lastRowIndex = why.rows.length - 1;
     >
       <Button
         as="a"
-        href={t.setup.ctaPrimaryHref}
+        href={localizePath(locale, t.setup.ctaPrimaryHref)}
         variant="primary"
         size="lg"
         class="deployment-cta-primary w-full rounded-xl sm:w-auto"
@@ -244,7 +246,7 @@ const lastRowIndex = why.rows.length - 1;
       </Button>
       <Button
         as="a"
-        href={t.setup.ctaSecondaryHref}
+        href={localizePath(locale, t.setup.ctaSecondaryHref)}
         variant="secondary"
         size="lg"
         class="deployment-cta-secondary w-full rounded-xl sm:w-auto"

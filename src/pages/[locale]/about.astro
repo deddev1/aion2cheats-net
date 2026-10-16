@@ -1,0 +1,59 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { resolvePageSeo } from '../../config/seo';
+import { breadcrumbSchema, webPageSchema } from '../../utils/schema';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import {
+  NON_DEFAULT_LOCALES,
+  getTranslations,
+  isLocale,
+  localizePath,
+} from '../../i18n';
+import { Prose } from '@/components/starwind/prose';
+
+export function getStaticPaths() {
+  return NON_DEFAULT_LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const { locale: raw } = Astro.params;
+if (!isLocale(raw) || raw === 'en') return Astro.redirect('/about/');
+const locale = raw;
+const t = getTranslations(locale);
+const seo = resolvePageSeo('/about/', locale);
+const path = localizePath(locale, '/about/');
+const about = t.legalPages.about;
+const breadcrumbs = [
+  { name: 'Home', path: localizePath(locale, '/') },
+  { name: t.footer.about, path },
+];
+---
+
+<BaseLayout
+  locale={locale}
+  title={seo.title}
+  description={seo.description}
+  jsonLd={[
+    webPageSchema({ name: seo.title, description: seo.description, url: path }),
+    breadcrumbSchema(breadcrumbs),
+  ]}
+>
+  <section class="py-8 md:py-12">
+    <div class="mx-auto max-w-3xl px-5">
+      <Breadcrumbs items={breadcrumbs} />
+      <h1 class="mt-6 font-[family-name:var(--font-heading)] text-3xl font-bold tracking-tight">{about.title}</h1>
+      <p class="mt-3 text-muted-foreground">{about.description}</p>
+      <Prose class="mt-10">
+        {
+          (about.sections ?? []).map((section) => (
+            <section class="mb-8">
+              <h2>{section.heading}</h2>
+              {section.paragraphs.map((p) => (
+                <p>{p}</p>
+              ))}
+            </section>
+          ))
+        }
+      </Prose>
+    </div>
+  </section>
+</BaseLayout>

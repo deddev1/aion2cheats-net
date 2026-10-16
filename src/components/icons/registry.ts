@@ -81,6 +81,7 @@ export const iconRegistry: Record<IconName, AstroComponent> = {
   chevronLeft: ChevronLeft,
   chevronRight: ChevronRight,
   chevronDown: ChevronDown,
+  globe: Map,
   menu: Menu,
   check: Check,
   x: X,

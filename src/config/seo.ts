@@ -1,8 +1,9 @@
-import { t } from '../i18n';
-import { SITE_DOMAIN as INDEXNOW_HOST_NAME } from './site';
+import { getTranslations, resolveLocale, stripLocalePrefix } from '../i18n';
+import { SITE_DOMAIN, SITE_DOMAIN as INDEXNOW_HOST_NAME } from './site';
 import { getPageSeoEntry } from './pageSeo';
+import { PAGE_SEO_BY_LOCALE } from '../i18n/seo-locales';
 
-export const SITE_ORIGIN = `https://${t.site.domain}`;
+export const SITE_ORIGIN = `https://${SITE_DOMAIN}`;
 
 /** Stable share image (outside dist/images so prune-dist-images never deletes it). */
 export const DEFAULT_OG_IMAGE = '/og.jpg';
@@ -54,14 +55,24 @@ export function absoluteShareImageUrl(path: string): string {
   return absoluteAssetUrl(shareImagePath(path));
 }
 
-export function resolvePageSeo(pathname: string): { title: string; description: string } {
-  const entry = getPageSeoEntry(pathname);
+export function resolvePageSeo(
+  pathname: string,
+  locale?: string | null,
+): { title: string; description: string } {
+  const code = resolveLocale(locale);
+  const bare = stripLocalePrefix(pathname);
+  const localized = PAGE_SEO_BY_LOCALE[code]?.[bare];
+  if (localized) return localized;
+  const entry = getPageSeoEntry(bare);
   if (entry) return entry;
+  const t = getTranslations(code);
   return { title: t.site.title, description: t.site.description };
 }
 
-export function pageTitle(keyword: string, brand = t.site.name): string {
-  const suffix = ` | ${brand}`;
+export function pageTitle(keyword: string, brand?: string, locale?: string | null): string {
+  const t = getTranslations(locale);
+  const name = brand ?? t.site.name;
+  const suffix = ` | ${name}`;
   const max = 60;
   if (`${keyword}${suffix}`.length <= max) return `${keyword}${suffix}`;
   const trimmed = keyword.slice(0, Math.max(20, max - suffix.length - 1)).trim();

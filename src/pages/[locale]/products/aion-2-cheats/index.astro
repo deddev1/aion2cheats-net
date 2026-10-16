@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { resolvePageSeo } from '../../../../config/seo';
+import { breadcrumbSchema, collectionPageSchema } from '../../../../utils/schema';
+import Breadcrumbs from '../../../../components/Breadcrumbs.astro';
+import ProductsSection from '../../../../components/ProductsSection.astro';
+import {
+  NON_DEFAULT_LOCALES,
+  getTranslations,
+  isLocale,
+  localizePath,
+} from '../../../../i18n';
+import SectionHeader from '../../../../components/SectionHeader.astro';
+
+export function getStaticPaths() {
+  return NON_DEFAULT_LOCALES.map((locale) => ({ params: { locale } }));
+}
+
+const { locale: raw } = Astro.params;
+if (!isLocale(raw) || raw === 'en') return Astro.redirect('/products/aion-2-cheats/');
+const locale = raw;
+const t = getTranslations(locale);
+const seo = resolvePageSeo('/products/aion-2-cheats/', locale);
+const path = localizePath(locale, '/products/aion-2-cheats/');
+const breadcrumbs = [
+  { name: 'Home', path: localizePath(locale, '/') },
+  { name: t.products.eyebrow, path },
+];
+---
+
+<BaseLayout
+  locale={locale}
+  title={seo.title}
+  description={seo.description}
+  jsonLd={[
+    collectionPageSchema({
+      name: t.products.title,
+      description: t.products.subtitle,
+      url: path,
+    }),
+    breadcrumbSchema(breadcrumbs),
+  ]}
+>
+  <section class="py-8 md:py-12">
+    <div class="mx-auto max-w-6xl px-5">
+      <Breadcrumbs items={breadcrumbs} />
+      <div class="mt-6">
+        <SectionHeader
+          eyebrow={t.products.eyebrow}
+          title={t.products.title}
+          desc={t.products.subtitle}
+          titleId="products-locale-title"
+        />
+      </div>
+    </div>
+  </section>
+  <ProductsSection />
+</BaseLayout>

@@ -11,7 +11,7 @@ interface Props {
 
 const { name, size = 20, class: className = '', strokeWidth = 1.75 } = Astro.props;
 
-const LucideIcon = iconRegistry[name];
+const LucideIcon = iconRegistry[name] ?? iconRegistry.navFaq;
 ---
 
 <LucideIcon

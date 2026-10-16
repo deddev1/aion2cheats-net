@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroSection from '../components/HeroSection.astro';
+import FeaturesSection from '../components/FeaturesSection.astro';
+import WhySetupSection from '../components/WhySetupSection.astro';
+import ProductsSection from '../components/ProductsSection.astro';
+import ContentSections from '../components/ContentSections.astro';
+import { resolvePageSeo } from '../config/seo';
+import { faqPageSchema, organizationSchema, websiteSchema } from '../utils/schema';
+import {
+  getTranslations,
+  resolveLocale,
+  type Locale,
+} from '../i18n';
+
+interface Props {
+  locale?: Locale;
+}
+
+const locale = resolveLocale(Astro.props.locale);
+const t = getTranslations(locale);
+const seo = resolvePageSeo('/', locale);
+const homeFaqs = t.faq.items;
+---
+
+<BaseLayout
+  locale={locale}
+  title={seo.title}
+  description={seo.description}
+  jsonLd={[
+    websiteSchema(),
+    organizationSchema(),
+    faqPageSchema(
+      homeFaqs.map((f, i) => ({
+        num: String(i + 1).padStart(2, '0'),
+        q: f.q,
+        a: f.a.replace(/<[^>]+>/g, ''),
+      })),
+    ),
+  ]}
+>
+  <HeroSection />
+  <FeaturesSection />
+  <ProductsSection />
+  <WhySetupSection />
+  <ContentSections />
+</BaseLayout>

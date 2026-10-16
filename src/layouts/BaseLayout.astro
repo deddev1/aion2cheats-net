@@ -1,6 +1,14 @@
 ---
 import "@/styles/starwind.css";
-import { t } from '../i18n';
+import {
+  getTranslations,
+  localeFromPathname,
+  localizePath,
+  LOCALES,
+  LOCALE_META,
+  stripLocalePrefix,
+  type Locale,
+} from '../i18n';
 import {
   RSS_FEED_PATH,
   TWITTER_CREATOR,
@@ -26,7 +34,12 @@ interface Props {
   articleModifiedTime?: string;
   noindex?: boolean;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+  locale?: Locale;
 }
+
+const locale = Astro.props.locale ?? localeFromPathname(Astro.url.pathname);
+const t = getTranslations(locale);
+const meta = LOCALE_META[locale];
 
 const {
   title = t.site.title,
@@ -40,15 +53,22 @@ const {
   jsonLd,
 } = Astro.props;
 
-const canonical = canonicalUrl(Astro.url.pathname);
+const barePath = stripLocalePrefix(Astro.url.pathname);
+const canonical = canonicalUrl(localizePath(locale, barePath));
 const ogImageUrl = absoluteShareImageUrl(ogImage);
 const robotsContent = noindex
   ? 'noindex, nofollow'
   : 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1';
+
+const alternateLocales = LOCALES.map((code) => ({
+  hreflang: LOCALE_META[code].hreflang,
+  href: canonicalUrl(localizePath(code, barePath)),
+}));
+const xDefault = canonicalUrl(localizePath('en', barePath));
 ---
 
 <!doctype html>
-<html lang="en" class="dark fonts-pending">
+<html lang={meta.htmlLang} class="dark fonts-pending">
   <head>
     <meta charset="UTF-8" />
     <script is:inline>
@@ -69,8 +89,12 @@ const robotsContent = noindex
     <meta name="googlebot" content={robotsContent} />
     <meta name="theme-color" content="#7F3DEE" />
     <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="en" href={canonical} />
-    <link rel="alternate" hreflang="x-default" href={canonical} />
+    {
+      alternateLocales.map((alt) => (
+        <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
+      ))
+    }
+    <link rel="alternate" hreflang="x-default" href={xDefault} />
     <link
       rel="alternate"
       type="application/rss+xml"
@@ -91,7 +115,6 @@ const robotsContent = noindex
     <meta property="og:image:secure_url" content={ogImageUrl} />
     <meta property="og:image:alt" content={ogImageAlt} />
     {
-      // Only claim exact dimensions for the dedicated 1200×630 share JPEG.
       ogImage === DEFAULT_OG_IMAGE && (
         <>
           <meta property="og:image:width" content={String(DEFAULT_OG_IMAGE_WIDTH)} />
@@ -102,7 +125,12 @@ const robotsContent = noindex
     <meta property="og:url" content={canonical} />
     <meta property="og:type" content={ogType} />
     <meta property="og:site_name" content={t.site.name} />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content={meta.ogLocale} />
+    {
+      LOCALES.filter((code) => code !== locale).map((code) => (
+        <meta property="og:locale:alternate" content={LOCALE_META[code].ogLocale} />
+      ))
+    }
 
     {
       ogType === 'article' && articlePublishedTime && (
@@ -146,11 +174,11 @@ const robotsContent = noindex
   </head>
   <body class="min-h-screen bg-background text-foreground">
     <button type="button" class="skip-link" data-skip-to-main>{t.ui.skipLink}</button>
-    <Header />
+    <Header locale={locale} />
     <main id="main-content">
       <slot />
     </main>
-    <Footer />
+    <Footer locale={locale} />
     <script>
       import '../scripts/site.ts';
     </script>
