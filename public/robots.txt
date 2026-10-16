@@ -4,6 +4,15 @@ Allow: /
 Disallow: /go/
 
 Sitemap: https://aion2cheats.net/sitemap.xml
+Sitemap: https://aion2cheats.net/sitemap-en.xml
+Sitemap: https://aion2cheats.net/sitemap-ko.xml
+Sitemap: https://aion2cheats.net/sitemap-zh-tw.xml
+Sitemap: https://aion2cheats.net/sitemap-de.xml
+Sitemap: https://aion2cheats.net/sitemap-pt-br.xml
+Sitemap: https://aion2cheats.net/sitemap-th.xml
+Sitemap: https://aion2cheats.net/sitemap-ja.xml
+Sitemap: https://aion2cheats.net/sitemap-es.xml
+Sitemap: https://aion2cheats.net/sitemap-fr.xml
 Sitemap: https://aion2cheats.net/sitemap-pages.xml
 Sitemap: https://aion2cheats.net/sitemap-products.xml
 Sitemap: https://aion2cheats.net/sitemap-blog.xml

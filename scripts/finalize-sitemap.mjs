@@ -5,6 +5,9 @@ import { resolveDistDir } from './dist-dir.mjs';
 const SITE = 'https://aion2cheats.net';
 const dist = resolveDistDir();
 
+/** Locale path prefixes (longest first so zh-tw / pt-br match correctly). */
+const LOCALE_CODES = ['zh-tw', 'pt-br', 'ko', 'de', 'th', 'ja', 'es', 'fr'];
+
 function loadUrlsetXml(dir) {
   const zero = path.join(dir, 'sitemap-0.xml');
   if (fs.existsSync(zero)) return fs.readFileSync(zero, 'utf8');
@@ -76,6 +79,26 @@ function normalizeUrl(loc) {
   return `${SITE}${pathname}`;
 }
 
+/** @param {string} pathname */
+function localeOf(pathname) {
+  for (const code of LOCALE_CODES) {
+    if (pathname === `/${code}/` || pathname.startsWith(`/${code}/`)) return code;
+  }
+  return 'en';
+}
+
+/** @param {string} pathname */
+function stripLocale(pathname) {
+  for (const code of LOCALE_CODES) {
+    if (pathname === `/${code}/`) return '/';
+    if (pathname.startsWith(`/${code}/`)) {
+      const rest = pathname.slice(code.length + 1);
+      return rest.startsWith('/') ? rest : `/${rest}`;
+    }
+  }
+  return pathname;
+}
+
 /** @param {string | undefined} value */
 function formatLastmod(value) {
   if (!value) return new Date().toISOString().slice(0, 10);
@@ -84,12 +107,12 @@ function formatLastmod(value) {
   return d.toISOString().slice(0, 10);
 }
 
-/** @param {SitemapUrl[]} urls */
-function bucketFor(loc) {
-  const path = new URL(loc).pathname;
-  if (path.startsWith('/blog/')) return 'blog';
-  if (path.startsWith('/products/')) return 'products';
-  if (path.startsWith('/forum/')) return 'forum';
+/** Content-type bucket using locale-stripped path. */
+function contentBucketFor(loc) {
+  const bare = stripLocale(new URL(loc).pathname);
+  if (bare.startsWith('/blog/')) return 'blog';
+  if (bare.startsWith('/products/')) return 'products';
+  if (bare.startsWith('/forum/')) return 'forum';
   return 'pages';
 }
 
@@ -131,54 +154,92 @@ ${body}
 }
 
 const parsed = parseUrls(raw);
-const byBucket = {
+const byContent = {
   pages: /** @type {SitemapUrl[]} */ ([]),
   products: /** @type {SitemapUrl[]} */ ([]),
   blog: /** @type {SitemapUrl[]} */ ([]),
   forum: /** @type {SitemapUrl[]} */ ([]),
 };
 
+/** @type {Record<string, SitemapUrl[]>} */
+const byLocale = Object.fromEntries(
+  ['en', ...LOCALE_CODES].map((code) => [code, /** @type {SitemapUrl[]} */ ([])]),
+);
+
 const seen = new Set();
 for (const item of parsed) {
   const loc = normalizeUrl(item.loc);
   if (!loc || seen.has(loc)) continue;
   seen.add(loc);
-  byBucket[bucketFor(loc)].push({
+  const entry = {
     loc,
     lastmod: item.lastmod,
     changefreq: item.changefreq,
     priority: item.priority,
-  });
+  };
+  byContent[contentBucketFor(loc)].push(entry);
+  byLocale[localeOf(new URL(loc).pathname)].push(entry);
 }
 
-const total = Object.values(byBucket).reduce((n, list) => n + list.length, 0);
+const total = Object.values(byContent).reduce((n, list) => n + list.length, 0);
 if (total === 0) {
   console.error('finalize-sitemap: no valid URLs after normalize.');
   process.exit(1);
 }
 
-for (const list of Object.values(byBucket)) {
+for (const list of Object.values(byContent)) {
+  list.sort((a, b) => a.loc.localeCompare(b.loc));
+}
+for (const list of Object.values(byLocale)) {
   list.sort((a, b) => a.loc.localeCompare(b.loc));
 }
 
 const today = new Date().toISOString().slice(0, 10);
-const childFiles = [
+
+/** @param {SitemapUrl[]} urls @param {string} name */
+function writeUrlset(urls, name) {
+  if (urls.length === 0) return null;
+  const lastmod =
+    urls
+      .map((u) => formatLastmod(u.lastmod))
+      .sort()
+      .at(-1) ?? today;
+  fs.writeFileSync(path.join(dist, name), renderUrlset(urls), 'utf8');
+  return { name, lastmod, count: urls.length };
+}
+
+const contentFiles = [
   { key: 'pages', name: 'sitemap-pages.xml' },
   { key: 'products', name: 'sitemap-products.xml' },
   { key: 'blog', name: 'sitemap-blog.xml' },
   { key: 'forum', name: 'sitemap-forum.xml' },
 ];
 
+const localeFiles = [
+  { key: 'en', name: 'sitemap-en.xml' },
+  { key: 'ko', name: 'sitemap-ko.xml' },
+  { key: 'zh-tw', name: 'sitemap-zh-tw.xml' },
+  { key: 'de', name: 'sitemap-de.xml' },
+  { key: 'pt-br', name: 'sitemap-pt-br.xml' },
+  { key: 'th', name: 'sitemap-th.xml' },
+  { key: 'ja', name: 'sitemap-ja.xml' },
+  { key: 'es', name: 'sitemap-es.xml' },
+  { key: 'fr', name: 'sitemap-fr.xml' },
+];
+
+/** @type {{ name: string, lastmod: string, count: number }[]} */
 const written = [];
-for (const child of childFiles) {
-  const urls = byBucket[child.key];
-  if (urls.length === 0) continue;
-  const lastmod = urls
-    .map((u) => formatLastmod(u.lastmod))
-    .sort()
-    .at(-1) ?? today;
-  fs.writeFileSync(path.join(dist, child.name), renderUrlset(urls), 'utf8');
-  written.push({ name: child.name, lastmod, count: urls.length });
+
+// Language sitemaps first (primary for international SEO / GSC).
+for (const child of localeFiles) {
+  const result = writeUrlset(byLocale[child.key], child.name);
+  if (result) written.push(result);
+}
+
+// Content-type sitemaps (secondary discovery).
+for (const child of contentFiles) {
+  const result = writeUrlset(byContent[child.key], child.name);
+  if (result) written.push(result);
 }
 
 const indexXml = renderIndex(written);
@@ -187,15 +248,30 @@ fs.writeFileSync(path.join(dist, 'sitemap.xml'), indexXml, 'utf8');
 fs.writeFileSync(path.join(dist, 'sitemap-index.xml'), indexXml, 'utf8');
 
 // Keep a combined urlset for IndexNow + tools that expect one file of <url> entries.
-const allUrls = childFiles.flatMap((c) => byBucket[c.key]);
+const allUrls = contentFiles.flatMap((c) => byContent[c.key]);
 fs.writeFileSync(path.join(dist, 'sitemap-0.xml'), renderUrlset(allUrls), 'utf8');
-
-// Point IndexNow at the combined urlset (not the index).
 fs.writeFileSync(path.join(dist, 'sitemap-all.xml'), renderUrlset(allUrls), 'utf8');
 
+// Fail the build if a language sitemap is empty (SEO breakage).
+for (const child of localeFiles) {
+  if ((byLocale[child.key]?.length ?? 0) === 0) {
+    console.error(`finalize-sitemap: missing URLs for locale "${child.key}"`);
+    process.exit(1);
+  }
+  if (!fs.existsSync(path.join(dist, child.name))) {
+    console.error(`finalize-sitemap: expected file missing: ${child.name}`);
+    process.exit(1);
+  }
+}
+
 console.log(`Sitemap finalized: ${total} URLs`);
-for (const w of written) {
-  console.log(`  ${w.name}: ${w.count}`);
+console.log('Language sitemaps:');
+for (const w of written.filter((x) => localeFiles.some((c) => c.name === x.name))) {
+  console.log(`  ${SITE}/${w.name} (${w.count})`);
+}
+console.log('Content sitemaps:');
+for (const w of written.filter((x) => contentFiles.some((c) => c.name === x.name))) {
+  console.log(`  ${SITE}/${w.name} (${w.count})`);
 }
 console.log('  sitemap.xml / sitemap-index.xml → index');
 console.log('  sitemap-all.xml → combined urlset');
