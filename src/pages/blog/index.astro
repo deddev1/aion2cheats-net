@@ -1,4 +1,5 @@
 ---
+import '../../styles/blog-pages.css';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import {
   blogPosts,
@@ -75,7 +76,7 @@ const tagIcon = (tag: string): IconName => blogTagIcons[tag] ?? 'tag';
         >
           <button
             type="button"
-            class="blog-filter inline-flex shrink-0 items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium shadow-xs hover:bg-muted"
+            class="blog-filter is-active inline-flex shrink-0 items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-medium shadow-xs hover:bg-muted"
             data-blog-filter="all"
             aria-pressed="true"
           >

@@ -25,12 +25,12 @@ const { overviewTitle, blocks, showToggle } = Astro.props;
     <SectionHeader
       eyebrow="Overview"
       title={overviewTitle ?? 'Product description'}
-      desc="How this build fits ranked, Zero Build, and patch-day workflows."
+      desc="How this build fits Abyss PvP, instances, and patch-day workflows."
       titleId="product-description-title"
       wide
     />
 
-    <div class:list={['desc-wrap product-detail__narrow mt-8', showToggle && 'collapsible']} data-desc-wrap>
+    <div class:list={['desc-appearance product-detail__narrow mt-8', showToggle && 'collapsible']} data-desc-wrap>
       <Prose class="description-content max-w-none">
         {blocks.map((block) => (block.type === 'h2' ? <h2>{block.text}</h2> : <p>{block.text}</p>))}
       </Prose>

@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { resolveDistDir } from './dist-dir.mjs';
 
-const SITE = 'https://fortnite-cheats.com';
+const SITE = 'https://aion2cheats.net';
 const dist = resolveDistDir();
 
 function loadUrlsetXml(dir) {
@@ -67,7 +67,7 @@ function normalizeUrl(loc) {
     return null;
   }
   if (url.protocol !== 'https:') url.protocol = 'https:';
-  url.hostname = 'fortnite-cheats.com';
+  url.hostname = 'aion2cheats.net';
   url.hash = '';
   url.search = '';
   let pathname = url.pathname;

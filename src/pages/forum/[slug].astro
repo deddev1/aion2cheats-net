@@ -35,7 +35,7 @@ const relatedPosts = [
               <button class="forum-vote__up" type="button" data-vote-up aria-label="Upvote this discussion"><Icon name="chevronDown" size={17} /></button><strong data-vote-count>{post.upvotes}</strong><button type="button" disabled aria-label="Downvoting is unavailable"><Icon name="chevronDown" size={17} /></button>
             </div>
             <div class="forum-detail-content">
-              <div class="forum-post-meta"><span class={`forum-community-avatar tone-${post.categoryTone}`}><Icon name="users" size={15} /></span><a href="/forum/" class="forum-community-name">d/{post.category.toLowerCase().replaceAll(' ', '')}</a><span>·</span><span><Icon name="userRound" size={13} /> Fortnite Cheats guide team</span><span>Guide-based Q&amp;A</span></div>
+              <div class="forum-post-meta"><span class={`forum-community-avatar tone-${post.categoryTone}`}><Icon name="users" size={15} /></span><a href="/forum/" class="forum-community-name">d/{post.category.toLowerCase().replaceAll(' ', '')}</a><span>·</span><span><Icon name="userRound" size={13} /> Aion 2 Cheats guide team</span><span>Guide-based Q&amp;A</span></div>
               <h1>{post.title}</h1>
               {post.flair && <span class={`forum-flair tone-${post.categoryTone}`}>{post.flair}</span>}
               <div class="forum-detail-copy">{post.body.map((paragraph) => <p>{paragraph}</p>)}</div>
@@ -57,7 +57,7 @@ const relatedPosts = [
           </article>
         </main>
         <aside class="forum-sidebar">
-          <section class="forum-side-card forum-about"><div class="forum-side-card__banner"></div><div class="forum-about__content"><div class="forum-about__title"><span class={`forum-community-avatar tone-${post.categoryTone}`}>d</span><h2>d/{post.category.toLowerCase().replaceAll(' ', '')}</h2></div><p>Browse answers summarized from Fortnite Cheats guides.</p><div class="forum-stats"><span><b>{forumPosts.length}</b> guide discussions</span><span><b>{forumPosts.filter((item) => item.category === post.category).length}</b> in this topic</span></div><a class="forum-join" href="/forum/">Browse discussions</a></div></section>
+          <section class="forum-side-card forum-about"><div class="forum-side-card__banner"></div><div class="forum-about__content"><div class="forum-about__title"><span class={`forum-community-avatar tone-${post.categoryTone}`}>d</span><h2>d/{post.category.toLowerCase().replaceAll(' ', '')}</h2></div><p>Browse answers summarized from Aion 2 Cheats guides.</p><div class="forum-stats"><span><b>{forumPosts.length}</b> guide discussions</span><span><b>{forumPosts.filter((item) => item.category === post.category).length}</b> in this topic</span></div><a class="forum-join" href="/forum/">Browse discussions</a></div></section>
           <section class="forum-side-card forum-related-card" aria-labelledby="forum-related-title">
             <h2 class="forum-side-heading" id="forum-related-title">More discussions</h2>
             <ul class="forum-related-list">

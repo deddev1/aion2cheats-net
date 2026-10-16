@@ -81,7 +81,7 @@ const showDescToggle = descriptionBlocks.length > 2;
       if (btn.hasAttribute('data-desc-bound')) return;
       btn.setAttribute('data-desc-bound', '');
       btn.addEventListener('click', () => {
-        const wrap = btn.closest('[data-desc-wrap]');
+        const appearance = btn.closest('[data-desc-wrap]');
         if (!wrap) return;
         const open = wrap.classList.toggle('open');
         btn.textContent = open ? btn.getAttribute('data-less') ?? 'Show less' : btn.getAttribute('data-more') ?? 'Show more';

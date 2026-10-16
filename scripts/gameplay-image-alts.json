@@ -1,85 +1,117 @@
 {
   "gameplay": [
     {
-      "file": "fortnite-esp-wallhack.png",
-      "alt": "Fortnite ESP wallhack cheat gameplay with player boxes distance tags and aimbot FOV",
+      "file": "aion-2-esp-wallhack.png",
+      "alt": "Aion 2 cheat gameplay with leveling bot panel open beside players on a sunny cliff overlooking a valley",
+      "caption": "Leveling bot",
+      "captionDesc": "On-task leveling panel with players gathered on a cliff.",
       "srcIndex": 0
     },
     {
-      "file": "fortnite-aimbot-combat.png",
-      "alt": "Fortnite aimbot cheat gameplay with FOV circle and green skeleton ESP on enemy",
+      "file": "aion-2-skill-script.png",
+      "alt": "Aion 2 automated quest bot overlay showing target level 45 skill upgrades and healing potion settings",
+      "caption": "Quest automation",
+      "captionDesc": "Target level, skill upgrades and potion restock controls.",
       "srcIndex": 1
     },
     {
-      "file": "fortnite-player-esp.png",
-      "alt": "Fortnite player ESP wallhack showing skeletons boxes and distance meters",
+      "file": "aion-2-player-esp.png",
+      "alt": "Aion 2 players and mounts in a rocky outpost with an active cheat leveling menu on the left",
+      "caption": "Open-world bot",
+      "captionDesc": "Leveling worker active near players and mounts.",
       "srcIndex": 2
     },
     {
-      "file": "fortnite-radar-hack.png",
-      "alt": "Fortnite radar and ESP overlay with enemy name tags health and range markers",
+      "file": "aion-2-radar-hack.png",
+      "alt": "Aion 2 cheat menu with Abyss-ready leveling settings while characters stand in a dark rocky zone",
+      "caption": "Bot controls",
+      "captionDesc": "Full leveling worker panel over rocky open-world terrain.",
       "srcIndex": 3
     },
     {
-      "file": "fortnite-auto-aim.png",
-      "alt": "Fortnite sniper aimbot cheat with green ESP box weapon label and FOV circle",
+      "file": "aion-2-auto-aim.png",
+      "alt": "Aion 2 extraction reward popup with leveling worker cheat overlay and chat showing Kinah and quest loot",
+      "caption": "Loot & extraction",
+      "captionDesc": "Extraction results with bot panel and quest loot chat.",
       "srcIndex": 4
     },
     {
-      "file": "fortnite-loot-radar.png",
-      "alt": "Fortnite loot and chest ESP gameplay with enemy boxes and distance trackers",
-      "srcIndex": 5
+      "file": "aion-2-loot-radar.png",
+      "alt": "Aion 2 inventory and gem tooltip open while the On task cheat bot manages restock and market options",
+      "caption": "Farm assist",
+      "captionDesc": "Inventory, restock and market automation during farming.",
+      "srcIndex": 0
     },
     {
-      "file": "fortnite-skin-changer.png",
-      "alt": "Fortnite cheat gameplay with chams skeleton ESP and aim lock on pier",
-      "srcIndex": 6
+      "file": "aion-2-costume-changer.png",
+      "alt": "Aion 2 dialogue scene with purple cheat overlay waiting for game API bindings during a quest cutscene",
+      "caption": "Quest bot",
+      "captionDesc": "Bot stays loaded through NPC dialogue and cutscenes.",
+      "srcIndex": 1
     },
     {
-      "file": "fortnite-thermal-esp.png",
-      "alt": "Fortnite thermal vision ESP showing skeleton wallhack HP and distance",
-      "srcIndex": 7
+      "file": "aion-2-thermal-esp.png",
+      "alt": "Aion 2 night scene with winged character near a glowing portal and leveling worker cheat menu running",
+      "caption": "Flight zone bot",
+      "captionDesc": "Leveling worker active near portal and winged players.",
+      "srcIndex": 2
     },
     {
-      "file": "fortnite-build-fight-esp.png",
-      "alt": "Fortnite build fight ESP wallhack with names HP bars and FOV circle",
-      "srcIndex": 8
+      "file": "aion-2-instance-esp.png",
+      "alt": "Aion 2 cheat gameplay showing Start Stop Pause bot controls beside the native hotbar and HP MP bars",
+      "caption": "One-click start",
+      "captionDesc": "Start, stop and pause controls beside the Aion 2 hotbar.",
+      "srcIndex": 3
     },
     {
-      "file": "fortnite-arena-wallhack.png",
-      "alt": "Fortnite arena wallhack ESP with wireframe players and weapon tags",
-      "srcIndex": 9
+      "file": "aion-2-abyss-wallhack.png",
+      "alt": "Aion 2 multiplayer gathering on a grassy cliff with On task bot prioritizing feathers skills and equipment",
+      "caption": "Group farming",
+      "captionDesc": "Feather priority, skill upgrades and equipment automation.",
+      "srcIndex": 4
     },
     {
-      "file": "fortnite-spawn-island-esp.png",
-      "alt": "Fortnite spawn island ESP with skeleton boxes and aimbot reticle",
-      "srcIndex": 10
+      "file": "aion-2-spawn-esp.png",
+      "alt": "Aion 2 starting-area gameplay with leveling bot target level 45 and main quest until level enabled",
+      "caption": "Main quest bot",
+      "captionDesc": "Main-quest leveling path set to target level 45.",
+      "srcIndex": 0
     },
     {
-      "file": "fortnite-long-range-esp.png",
-      "alt": "Fortnite long range ESP wallhack with enemy names health and weapons",
-      "srcIndex": 11
+      "file": "aion-2-long-range-esp.png",
+      "alt": "Aion 2 open-world cheat overlay with recovery profile Aether Energy and market listing options visible",
+      "caption": "Recovery profile",
+      "captionDesc": "Recovery, Aether Energy and market listing options.",
+      "srcIndex": 1
     },
     {
-      "file": "fortnite-aimbot-lock.png",
-      "alt": "Fortnite aimbot lock with green skeleton ESP FOV circle and head priority",
-      "srcIndex": 12
+      "file": "aion-2-aimbot-lock.png",
+      "alt": "Aion 2 cheat panel in validation mode with leveling worker started and Portuguese quest tracker on screen",
+      "caption": "Validation mode",
+      "captionDesc": "Leveling worker started in validation mode.",
+      "srcIndex": 2
     },
     {
-      "file": "fortnite-chams-esp.png",
-      "alt": "Fortnite chams and skeleton ESP cheat on wooden pier",
-      "srcIndex": 13
+      "file": "aion-2-chams-esp.png",
+      "alt": "Aion 2 cave dialogue with blonde NPC Niror and purple automation menu for potions and quest recovery",
+      "caption": "Cutscene-safe bot",
+      "captionDesc": "Automation stays up during contaminated-zone dialogue.",
+      "srcIndex": 3
     },
     {
-      "file": "fortnite-squad-esp.png",
-      "alt": "Fortnite multi-player ESP wallhack with boxes skeletons and distances",
-      "srcIndex": 14
+      "file": "aion-2-group-esp.png",
+      "alt": "Aion 2 players with glowing wings near a temporary investigation base while cheat leveling settings stay open",
+      "caption": "Winged party",
+      "captionDesc": "Party near portal with live leveling worker settings.",
+      "srcIndex": 4
     },
     {
-      "file": "fortnite-combat-esp.png",
-      "alt": "Fortnite combat ESP and aimbot overlay in open field fight",
-      "srcIndex": 15
+      "file": "aion-2-combat-esp.png",
+      "alt": "Aion 2 combat-ready hotbar and chat log with Kinah rewards while the On task cheat bot panel remains visible",
+      "caption": "Live session",
+      "captionDesc": "Hotbar, Kinah chat and On task bot in one session.",
+      "srcIndex": 0
     }
   ],
-  "sourceCount": 16
+  "sourceCount": 5
 }

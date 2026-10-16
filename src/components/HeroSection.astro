@@ -17,9 +17,6 @@ const heroMarqueePills = [
     icon: compatibilityIcons[i] ?? 'check',
   })),
 ];
-
-const heroBgWebp = '/images/hero-fortnite-dark.webp';
-const heroBgJpg = '/images/hero-fortnite-dark.jpg';
 ---
 
 <section
@@ -28,20 +25,6 @@ const heroBgJpg = '/images/hero-fortnite-dark.jpg';
   aria-labelledby="hero-title"
 >
   <div class="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-    <picture class="absolute inset-0 block h-full w-full">
-      <source type="image/webp" srcset={heroBgWebp} />
-      <img
-        src={heroBgJpg}
-        alt="Fortnite Season X character lineup used as a dark homepage hero background"
-        width={1024}
-        height={576}
-        class="hero-bg-image absolute inset-0 h-full w-full object-cover object-[center_30%]"
-        loading="eager"
-        fetchpriority="high"
-        decoding="async"
-      />
-    </picture>
-    <div class="hero-bg-dim absolute inset-0" />
     <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--primary)_0%,transparent_55%)] opacity-[0.12]" />
   </div>
 

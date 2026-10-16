@@ -1,17 +1,17 @@
-# Search Console workflow (fortnite-cheats.com)
+# Search Console workflow (aion2cheats.net)
 
 You verify the domain at your DNS provider—no HTML meta tags in the repo.
 
 ## Setup (once)
 
-1. Open [Google Search Console](https://search.google.com/search-console) and add the **domain** property for `fortnite-cheats.com` if it is not already there.
+1. Open [Google Search Console](https://search.google.com/search-console) and add the **domain** property for `aion2cheats.net` if it is not already there.
 2. Under **Sitemaps**, submit the index first (required):
-   - `https://fortnite-cheats.com/sitemap.xml`
+   - `https://aion2cheats.net/sitemap.xml`
 3. Optional — submit child sitemaps too (same URLs, clearer GSC status per section):
-   - `https://fortnite-cheats.com/sitemap-pages.xml`
-   - `https://fortnite-cheats.com/sitemap-products.xml`
-   - `https://fortnite-cheats.com/sitemap-blog.xml`
-   - `https://fortnite-cheats.com/sitemap-forum.xml`
+   - `https://aion2cheats.net/sitemap-pages.xml`
+   - `https://aion2cheats.net/sitemap-products.xml`
+   - `https://aion2cheats.net/sitemap-blog.xml`
+   - `https://aion2cheats.net/sitemap-forum.xml`
 4. Repeat in [Bing Webmaster Tools](https://www.bing.com/webmasters) if you use Bing.
 
 ## Monthly tune (15 minutes)
@@ -26,10 +26,10 @@ You verify the domain at your DNS provider—no HTML meta tags in the repo.
 
 | Common query intent | Edit path in `pageSeo.ts` |
 | ------------------- | ------------------------- |
-| fortnite cheats (broad) | `/` |
+| aion 2 cheats (broad) | `/` |
 | lite / pro / elite | `/cheats/compare/`, `/cheats/lite/`, etc. |
 | ESP wallhack, aimbot | `/cheats/pro/`, blog posts (titles set per article) |
-| hwid, skin changer | `/products/fortnite-cheats/utilities/` |
+| hwid, costume changer | `/products/aion-2-cheats/utilities/` |
 | purchase / refund | `/terms/`, `/contact/` |
 
 Product and blog article pages still use their own titles from content; add entries to `PAGE_SEO` only when you want a fixed override for a specific pathname.

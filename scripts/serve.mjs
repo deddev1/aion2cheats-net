@@ -5,7 +5,7 @@ import zlib from 'node:zlib';
 import { resolvePathRedirect } from './redirects.mjs';
 import { resolveCheckoutPathRedirect } from '../src/config/checkout-redirects.mjs';
 
-const CANONICAL_HOST = 'fortnite-cheats.com';
+const CANONICAL_HOST = 'aion2cheats.net';
 const distDir = path.resolve('dist');
 const port = Number(process.env.PORT) || 3000;
 

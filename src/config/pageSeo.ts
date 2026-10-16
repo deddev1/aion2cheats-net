@@ -10,59 +10,59 @@ export interface PageSeoEntry {
 
 export const PAGE_SEO: Record<string, PageSeoEntry> = {
   '/': {
-    title: 'Fortnite Cheats | Aimbot, ESP & Wallhack',
+    title: 'Aion 2 Cheats | ESP, Radar & Abyss PvP',
     description:
-      'Fortnite cheats for PC with aimbot, ESP, wallhack, radar, loot ESP and skin changer. Updated after Easy Anti-Cheat patches.',
+      'Aion 2 cheats for PC with player ESP, wallhack, Abyss radar, gather ESP, skill assist and costume changer. Built for Elyos vs Asmodian PvP, instances and flight.',
   },
-  '/products/fortnite-cheats/': {
-    title: 'Fortnite Cheats Products | Elite, HWID & Skin Changer',
+  '/products/aion-2-cheats/': {
+    title: 'Aion 2 Cheats Products | Elite, HWID & Costume Changer',
     description:
-      'Fortnite Elite cheats, HWID spoofer, UGC recovery and Skin Changer for Battle Royale, Zero Build and Ranked on PC.',
+      'Aion 2 Elite cheats, HWID spoofer, UGC recovery and Costume Changer for Abyss RvR, arenas, instances and flight on PC.',
   },
-  '/products/fortnite-cheats/elite/': {
-    title: 'Fortnite Elite Cheats | Aimbot, ESP & Loot Assist',
+  '/products/aion-2-cheats/elite/': {
+    title: 'Aion 2 Elite Cheats | ESP, Skill Assist & Farm Assist',
     description:
-      'Fortnite Elite with aimbot, ESP wallhack, loot assist, Auto Finish, Skin Changer and priority patch updates.',
+      'Aion 2 Elite with ESP wallhack, class skill assist, farm assist, Auto Kill, Costume Changer and priority patch updates.',
   },
-  '/products/fortnite-cheats/utilities/': {
-    title: 'Fortnite Utilities | HWID Spoofer, UGC & Skin Changer',
+  '/products/aion-2-cheats/utilities/': {
+    title: 'Aion 2 Utilities | HWID Spoofer, UGC & Costume Changer',
     description:
-      'HWID Spoofer after hardware bans, UGC for Epic and EAC appeals, and local Skin Changer / Unlock All.',
+      'HWID Spoofer after hardware bans, UGC for NCSOFT and anti-cheat appeals, and local Costume Changer / Unlock All.',
   },
   '/blog/': {
-    title: 'Fortnite Cheats Guides | Aimbot, ESP & EAC',
+    title: 'Aion 2 Cheats Guides | ESP, Abyss & Anti-Cheat',
     description:
-      'Guides on Fortnite aimbot, ESP wallhack, Lite vs Pro, Creative practice and Easy Anti-Cheat patch checks.',
+      'Guides on Aion 2 ESP wallhack, Abyss presets, Lite vs Pro, class skill assist and NCSOFT anti-cheat patch checks.',
   },
   '/forum/': {
-    title: 'Fortnite Cheats Forum',
+    title: 'Aion 2 Cheats Forum',
     description:
-      'Talk Fortnite cheat setup, aimbot and ESP configs, EAC status and product questions.',
+      'Talk Aion 2 cheat setup, ESP and class configs, Abyss status and product questions.',
   },
   '/faq/': {
-    title: 'FAQ | Fortnite Aimbot, ESP & Setup',
+    title: 'FAQ | Aion 2 ESP, Skill Assist & Setup',
     description:
-      'Answers on Fortnite cheat tiers, aimbot, ESP wallhack, radar, HWID spoofer, Skin Changer and loader setup.',
+      'Answers on Aion 2 cheat tiers, ESP wallhack, Abyss radar, skill assist, HWID spoofer, Costume Changer and loader setup.',
   },
   '/terms/': {
-    title: 'Terms & Conditions | Fortnite Cheats',
+    title: 'Terms & Conditions | Aion 2 Cheats',
     description:
-      'Purchase terms, license use and refund policy for Fortnite cheat products on fortnite-cheats.com.',
+      'Purchase terms, license use and refund policy for Aion 2 cheat products on aion2cheats.net.',
   },
   '/privacy/': {
-    title: 'Privacy Policy | Fortnite Cheats',
+    title: 'Privacy Policy | Aion 2 Cheats',
     description:
-      'How fortnite-cheats.com uses analytics, cookies and contact data.',
+      'How aion2cheats.net uses analytics, cookies and contact data.',
   },
   '/about/': {
-    title: 'About Fortnite Cheats',
+    title: 'About Aion 2 Cheats',
     description:
-      'Fortnite Cheats sells PC Fortnite cheat tiers, guides and utilities at fortnite-cheats.com.',
+      'Aion 2 Cheats sells PC Aion 2 cheat tiers, guides and utilities at aion2cheats.net.',
   },
   '/support/': {
-    title: 'Support | Fortnite Cheats',
+    title: 'Support | Aion 2 Cheats',
     description:
-      'Help with Fortnite cheat loader setup, configs, HWID spoofing and checkout.',
+      'Help with Aion 2 cheat loader setup, configs, HWID spoofing and checkout.',
   },
 };
 

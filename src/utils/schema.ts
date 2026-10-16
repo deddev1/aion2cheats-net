@@ -24,11 +24,11 @@ export function websiteSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'Fortnite Cheats',
+    name: 'Aion 2 Cheats',
     url: `${SITE_ORIGIN}/`,
     inLanguage: 'en-US',
     description:
-      'Fortnite cheats with aimbot, ESP, and radar hack, Skin Changer and ranked-safe tiers for PC.',
+      'Aion 2 cheats with ESP, Abyss radar, class skill assist, Costume Changer and Abyss-safe tiers for PC.',
   };
 }
 
@@ -38,7 +38,7 @@ export function organizationSchema() {
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'Fortnite Cheats',
+    name: 'Aion 2 Cheats',
     url: `${SITE_ORIGIN}/`,
     logo: `${SITE_ORIGIN}/logo.svg`,
     email: SUPPORT_EMAIL,
@@ -66,7 +66,7 @@ export function collectionPageSchema(input: { name: string; description: string;
     inLanguage: 'en-US',
     isPartOf: {
       '@type': 'WebSite',
-      name: 'Fortnite Cheats',
+      name: 'Aion 2 Cheats',
       url: `${SITE_ORIGIN}/`,
     },
   };
@@ -82,7 +82,7 @@ export function webPageSchema(input: { name: string; description: string; url: s
     inLanguage: 'en-US',
     isPartOf: {
       '@type': 'WebSite',
-      name: 'Fortnite Cheats',
+      name: 'Aion 2 Cheats',
       url: `${SITE_ORIGIN}/`,
     },
   };
@@ -131,7 +131,7 @@ export function discussionForumPostingSchema(input: {
     url: canonicalUrl(input.url),
     author: { '@type': 'Person', name: input.author },
     commentCount: input.comments,
-    isPartOf: { '@type': 'CollectionPage', name: 'Fortnite Cheats Forum', url: canonicalUrl('/forum/') },
+    isPartOf: { '@type': 'CollectionPage', name: 'Aion 2 Cheats Forum', url: canonicalUrl('/forum/') },
   };
 }
 
@@ -156,7 +156,7 @@ export function productSchema(input: {
     sku: input.sku ?? input.url.replace(/\//g, '-'),
     brand: {
       '@type': 'Brand',
-      name: 'Fortnite Cheats',
+      name: 'Aion 2 Cheats',
     },
     ...(input.image ? { image: absoluteAssetUrl(input.image) } : {}),
     offers: {
@@ -166,7 +166,7 @@ export function productSchema(input: {
       availability: 'https://schema.org/InStock',
       seller: {
         '@type': 'Organization',
-        name: 'Fortnite Cheats',
+        name: 'Aion 2 Cheats',
       },
     },
   };
@@ -209,11 +209,11 @@ export function articleSchema(input: {
     inLanguage: 'en-US',
     author: {
       '@type': 'Organization',
-      name: 'Fortnite Cheats',
+      name: 'Aion 2 Cheats',
     },
     publisher: {
       '@type': 'Organization',
-      name: 'Fortnite Cheats',
+      name: 'Aion 2 Cheats',
       logo: {
         '@type': 'ImageObject',
         url: `${SITE_ORIGIN}/logo.svg`,

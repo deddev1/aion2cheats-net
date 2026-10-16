@@ -5,15 +5,12 @@ import FeaturesSection from '../components/FeaturesSection.astro';
 import WhySetupSection from '../components/WhySetupSection.astro';
 import ProductsSection from '../components/ProductsSection.astro';
 import ContentSections from '../components/ContentSections.astro';
-import { t } from '../i18n';
 import { resolvePageSeo } from '../config/seo';
 import { faqPageSchema, organizationSchema, websiteSchema } from '../utils/schema';
 import { getLandingFaqs } from '../data/faq';
-import { webpSrc } from '../utils/responsiveImage';
 
 const seo = resolvePageSeo('/');
 const homeFaqs = getLandingFaqs();
-const heroLcpImage = webpSrc('/images/gameplay/fortnite-esp-wallhack.png', 512);
 ---
 
 <BaseLayout
@@ -21,15 +18,6 @@ const heroLcpImage = webpSrc('/images/gameplay/fortnite-esp-wallhack.png', 512);
   description={seo.description}
   jsonLd={[websiteSchema(), organizationSchema(), faqPageSchema(homeFaqs.map((f, i) => ({ num: String(i + 1).padStart(2, '0'), q: f.q, a: f.a.replace(/<[^>]+>/g, '') })))]}
 >
-  <link
-    slot="head"
-    rel="preload"
-    as="image"
-    href={heroLcpImage}
-    type="image/webp"
-    media="(min-width: 1024px)"
-    fetchpriority="high"
-  />
   <HeroSection />
   <FeaturesSection />
   <ProductsSection />

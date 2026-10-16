@@ -1,4 +1,4 @@
-const storagePrefix = 'fortnitecheats-forum-vote:';
+const storagePrefix = 'aion2cheats-forum-vote:';
 
 export function initForumVotes(): void {
   document.querySelectorAll<HTMLElement>('[data-forum-card], [data-forum-vote]').forEach((post) => {

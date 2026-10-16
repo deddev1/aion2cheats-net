@@ -3,10 +3,10 @@ Allow: /
 
 Disallow: /go/
 
-Sitemap: https://fortnite-cheats.com/sitemap.xml
-Sitemap: https://fortnite-cheats.com/sitemap-pages.xml
-Sitemap: https://fortnite-cheats.com/sitemap-products.xml
-Sitemap: https://fortnite-cheats.com/sitemap-blog.xml
-Sitemap: https://fortnite-cheats.com/sitemap-forum.xml
+Sitemap: https://aion2cheats.net/sitemap.xml
+Sitemap: https://aion2cheats.net/sitemap-pages.xml
+Sitemap: https://aion2cheats.net/sitemap-products.xml
+Sitemap: https://aion2cheats.net/sitemap-blog.xml
+Sitemap: https://aion2cheats.net/sitemap-forum.xml
 
-# RSS: https://fortnite-cheats.com/rss.xml
+# RSS: https://aion2cheats.net/rss.xml

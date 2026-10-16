@@ -103,7 +103,7 @@ const REPLACEMENTS = [
   ['"VAC"', '"EAC"'],
   ["'VAC'", "'EAC'"],
 
-  ['Captains Mode', 'Ranked Arena'],
+  ['Captains Mode', 'Abyss Arena'],
   ['All Pick', 'Battle Royale'],
 ];
 

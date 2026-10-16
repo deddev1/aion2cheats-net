@@ -1,5 +1,5 @@
 export declare const CHECKOUT_URLS: {
-  readonly fortnite: string;
+  readonly aion2: string;
   readonly skinChanger: string;
   readonly hwidSpoofer: string;
   readonly ugc: string;

@@ -21,9 +21,9 @@ const faqs = getAllFaqs();
   description={seo.description}
   jsonLd={[
     webPageSchema({
-      name: 'FAQ — Fortnite Cheats & Products',
+      name: 'FAQ — Aion 2 Cheats & Products',
       description:
-        'Answers about Fortnite cheat tiers, ESP wallhack, aimbot, HWID tools, blog guides and checkout at fortnite-cheats.com.',
+        'Answers about Aion 2 cheat tiers, ESP wallhack, aimbot, HWID tools, blog guides and checkout at aion2cheats.net.',
       url: '/faq/',
     }),
     faqPageSchema(faqs.map((f, i) => ({ num: String(i + 1).padStart(2, '0'), q: f.q, a: f.a.replace(/<[^>]+>/g, '') }))),

@@ -2,7 +2,6 @@
 
 function initBlogIndexFilters(root: HTMLElement) {
   if (root.dataset.blogFiltersBound === 'true') return;
-  root.dataset.blogFiltersBound = 'true';
 
   const grid = root.querySelector<HTMLElement>('#blog-grid');
   const emptyEl = root.querySelector<HTMLElement>('#blog-empty');
@@ -16,6 +15,8 @@ function initBlogIndexFilters(root: HTMLElement) {
     ...root.querySelectorAll<HTMLButtonElement>('[data-blog-filter]'),
   ];
   if (!filters.length) return;
+
+  root.dataset.blogFiltersBound = 'true';
 
   const featuredWrap = root.querySelector<HTMLElement>('[data-blog-featured]');
   const featuredCard = featuredWrap?.querySelector<HTMLElement>('[data-blog-card]');
@@ -81,8 +82,12 @@ function initBlogIndexFilters(root: HTMLElement) {
 
   filters.forEach((btn) => {
     btn.addEventListener('click', () => {
-      filters.forEach((b) => b.setAttribute('aria-pressed', 'false'));
+      filters.forEach((b) => {
+        b.setAttribute('aria-pressed', 'false');
+        b.classList.remove('is-active');
+      });
       btn.setAttribute('aria-pressed', 'true');
+      btn.classList.add('is-active');
       apply();
     });
   });
@@ -109,6 +114,11 @@ function initBlogIndexFilters(root: HTMLElement) {
   // Fallback if the select only updates the hidden input.
   sortInput?.addEventListener('change', () => {
     apply(sortInput.value || 'newest');
+  });
+
+  // Sync initial active pill class
+  filters.forEach((b) => {
+    b.classList.toggle('is-active', b.getAttribute('aria-pressed') === 'true');
   });
 
   requestAnimationFrame(() => apply());

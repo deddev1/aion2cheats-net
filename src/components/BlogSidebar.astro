@@ -35,9 +35,9 @@ const toc = post.body
   }));
 
 const productLinks: { label: string; href: string; icon: IconName }[] = [
-  { label: 'Fortnite products', href: ROUTES.products, icon: 'sidebarHub' },
+  { label: 'Aion 2 products', href: ROUTES.products, icon: 'sidebarHub' },
   { label: 'Elite cheats', href: ROUTES.productsElite, icon: 'sidebarElite' },
-  { label: 'Skin Changer', href: productPath('unlock-all'), icon: 'sidebarSkin' },
+  { label: 'Costume Changer', href: productPath('unlock-all'), icon: 'sidebarSkin' },
   { label: 'HWID Spoofer', href: productPath('hwid-spoofer'), icon: 'sidebarHwid' },
   { label: 'UGC', href: productPath('ugc'), icon: 'sidebarUgc' },
 ];
@@ -120,13 +120,13 @@ const productLinks: { label: string; href: string; icon: IconName }[] = [
     </ul>
     <Button
       as="a"
-      href={checkoutPath('fortnite')}
+      href={checkoutPath('aion2')}
       variant="primary"
       size="sm"
       class="blog-sidebar__cta mt-2.5 w-full min-w-0 justify-start"
       aria-label={t.ui.checkoutAria}
     >
-      <span class="truncate">Buy Fortnite Cheats</span>
+      <span class="truncate">Buy Aion 2 Cheats</span>
       <Icon name="arrowRight" size={16} class="shrink-0" />
     </Button>
   </section>
