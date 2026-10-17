@@ -1,0 +1,166 @@
+{
+  "title": "NCSOFT anti-cheat was unable to verify Aion 2",
+  "desc": "Fix verification errors, file integrity checks and when to use Account Recovery after anti-cheat issues.",
+  "tag": "Troubleshooting",
+  "readTime": "14 min read",
+  "body": [
+    {
+      "type": "p",
+      "text": "“NCSOFT anti-cheat was unable to verify your installation” blocks Aion 2 launch—not always a ban. File corruption, stuck anti-cheat modules, or conflicting software cause most cases."
+    },
+    {
+      "type": "h2",
+      "text": "What the error means"
+    },
+    {
+      "type": "p",
+      "text": "“NCSOFT anti-cheat was unable to verify your installation” blocks Aion 2 launch—not always a ban. File corruption, stuck anti-cheat modules, or conflicting software cause most cases."
+    },
+    {
+      "type": "p",
+      "text": "Work through verification fixes before assuming HWID enforcement or buying [HWID Spoofer](/products/aion-2-cheats/hwid-spoofer/)."
+    },
+    {
+      "type": "h2",
+      "text": "Verify game files on NCSOFT"
+    },
+    {
+      "type": "p",
+      "text": "Aion 2 launcher → Library → Aion 2 → Properties → Installed Files → Verify integrity. Let the scan finish completely."
+    },
+    {
+      "type": "p",
+      "text": "Restart NCSOFT as administrator once. Retry launch before any cheat loader runs—vanilla pass confirms client health."
+    },
+    {
+      "type": "h2",
+      "text": "Restart anti-cheat and PC cold boot"
+    },
+    {
+      "type": "p",
+      "text": "Exit NCSOFT fully—including tray icon. Cold reboot (full power off, not fast restart). Relaunch NCSOFT, wait for cloud sync, then Aion 2."
+    },
+    {
+      "type": "p",
+      "text": "anti-cheat modules sometimes stick after Windows sleep—cold boot clears stuck modules without reinstall."
+    },
+    {
+      "type": "h2",
+      "text": "Remove conflicting software"
+    },
+    {
+      "type": "p",
+      "text": "Disable overlay injectors, old cheat remnants, and kernel debug tools temporarily. Uninstall unused VPN kernel drivers."
+    },
+    {
+      "type": "p",
+      "text": "Run Aion 2 vanilla once to confirm anti-cheat passes—then follow [external cheat guide](/blog/aion-2-external-cheat-guide/) for clean loader order."
+    },
+    {
+      "type": "h2",
+      "text": "When it is an actual ban"
+    },
+    {
+      "type": "p",
+      "text": "Persistent verify failure on every account after clean reinstall may indicate account restriction. Check NCSOFT profile ban status."
+    },
+    {
+      "type": "p",
+      "text": "[Account Recovery](/products/aion-2-cheats/ugc/) helps structured appeal workflows—not instant unban guarantees. HWID spoof does not fix verify errors from corrupt files."
+    },
+    {
+      "type": "h2",
+      "text": "Loader order after fix"
+    },
+    {
+      "type": "p",
+      "text": "Once Aion 2 launches clean, read [anti-cheat patch day checklist](/blog/anticheat-patch-day-checklist/) before enabling [private aion 2 cheats](/products/aion-2-cheats/)."
+    },
+    {
+      "type": "p",
+      "text": "Launch external loader before Aion 2 per portal guide—reversed order can re-trigger verify on some builds."
+    },
+    {
+      "type": "h2",
+      "text": "After fix: safe return to cheats"
+    },
+    {
+      "type": "p",
+      "text": "Discord support wants verify-error screenshots plus order email if loader fails post-fix. Do not rage-queue Abyss same hour as verify fix—run private instance ESP check first."
+    },
+    {
+      "type": "p",
+      "text": "Conservative presets after any anti-cheat-related error—telemetry spikes after client repairs."
+    },
+    {
+      "type": "cta",
+      "title": "UGC appeal tools",
+      "text": "Structured appeal workflows for restrictions—secure checkout.",
+      "href": "/go/ugc/"
+    },
+    {
+      "type": "p",
+      "text": "Aion 2 Cheats at aion2cheats.net sells Aion 2 cheats for Windows PC Open World PvP and instances. Check status before you queue after a patch."
+    },
+    {
+      "type": "p",
+      "text": "anti-cheat enforcement is real: read status, reload loader after patches, and use conservative presets. Humanized aim smoothness and limited ESP range reduce report volume compared to max automation on day one."
+    },
+    {
+      "type": "p",
+      "text": "Internal links across our blog connect setup guides—ESP wallhack, zoom, aimbot, Elite tier, anti-cheat checklist, and purchase walkthrough. Start at [Aion 2 Cheats](/products/aion-2-cheats/) when you are ready to move beyond practice lobbies."
+    },
+    {
+      "type": "p",
+      "text": "Compare [Lite vs Pro](/blog/aion-2-lite-vs-pro/) and [features guide](/blog/aion-2-cheats-features-guide/) before checkout. Elite adds bots, kill steal, and Costume Changer for operators who mastered Pro aimbot."
+    },
+    {
+      "type": "p",
+      "text": "Stream-proof mode, external loader architecture, and cloud config sync distinguish aion2cheats.net from free paste tools that vanish after anti-cheat waves. Private maintenance every patch beats feature bullet lists from unknown forums."
+    },
+    {
+      "type": "p",
+      "text": "Aion 2 Cheats at aion2cheats.net sells Aion 2 cheats for Windows PC Open World PvP and instances. Check status before you queue after a patch."
+    },
+    {
+      "type": "p",
+      "text": "anti-cheat enforcement is real: read status, reload loader after patches, and use conservative presets. Humanized aim smoothness and limited ESP range reduce report volume compared to max automation on day one."
+    },
+    {
+      "type": "p",
+      "text": "Internal links across our blog connect setup guides—ESP wallhack, zoom, aimbot, Elite tier, anti-cheat checklist, and purchase walkthrough. Start at [Aion 2 Cheats](/products/aion-2-cheats/) when you are ready to move beyond practice lobbies."
+    },
+    {
+      "type": "p",
+      "text": "Compare [Lite vs Pro](/blog/aion-2-lite-vs-pro/) and [features guide](/blog/aion-2-cheats-features-guide/) before checkout. Elite adds bots, kill steal, and Costume Changer for operators who mastered Pro aimbot."
+    },
+    {
+      "type": "p",
+      "text": "Stream-proof mode, external loader architecture, and cloud config sync distinguish aion2cheats.net from free paste tools that vanish after anti-cheat waves. Private maintenance every patch beats feature bullet lists from unknown forums."
+    },
+    {
+      "type": "p",
+      "text": "Aion 2 Cheats at aion2cheats.net sells Aion 2 cheats for Windows PC Open World PvP and instances. Check status before you queue after a patch."
+    },
+    {
+      "type": "p",
+      "text": "anti-cheat enforcement is real: read status, reload loader after patches, and use conservative presets. Humanized aim smoothness and limited ESP range reduce report volume compared to max automation on day one."
+    },
+    {
+      "type": "p",
+      "text": "Internal links across our blog connect setup guides—ESP wallhack, zoom, aimbot, Elite tier, anti-cheat checklist, and purchase walkthrough. Start at [Aion 2 Cheats](/products/aion-2-cheats/) when you are ready to move beyond practice lobbies."
+    },
+    {
+      "type": "p",
+      "text": "Compare [Lite vs Pro](/blog/aion-2-lite-vs-pro/) and [features guide](/blog/aion-2-cheats-features-guide/) before checkout. Elite adds bots, kill steal, and Costume Changer for operators who mastered Pro aimbot."
+    },
+    {
+      "type": "p",
+      "text": "Stream-proof mode, external loader architecture, and cloud config sync distinguish aion2cheats.net from free paste tools that vanish after anti-cheat waves. Private maintenance every patch beats feature bullet lists from unknown forums."
+    },
+    {
+      "type": "p",
+      "text": "Aion 2 Cheats at aion2cheats.net sells Aion 2 cheats for Windows PC Open World PvP and instances. Check status before you queue after a patch."
+    }
+  ]
+}

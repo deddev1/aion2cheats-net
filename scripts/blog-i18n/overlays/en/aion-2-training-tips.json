@@ -1,0 +1,86 @@
+{
+  "title": "Aion 2 Training tips for aimbot and ESP practice",
+  "desc": "Training and private-lobby workflows to tune aimbot, ESP wallhack and drop ESP before Abyss PvP.",
+  "tag": "Guides",
+  "readTime": "14 min read",
+  "body": [
+    {
+      "type": "p",
+      "text": "Training and private lobbies are training tools—not the same as private aion 2 cheats used in Abyss PvP. Use them to tune [Pro aimbot](/products/aion-2-cheats/) and ESP ranges before going live on NCSOFT."
+    },
+    {
+      "type": "h2",
+      "text": "Aimbot smoothness drills"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "Load the Abyss preset with high smoothness and moderate FOV.",
+        "Run staff mid-range skill chains for five minutes without changing sliders.",
+        "Switch to bow close-range tracking, then gun finisher timing.",
+        "Only lower smoothness after tracking looks human in replays.",
+        "Save a Training grounds profile separate from your Abyss preset."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "ESP and wallhack readability"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "Start player boxes and skeletons at 1200 units max distance.",
+        "Enable health bars and distance readouts; turn off portrait spam.",
+        "Add drop and drop ESP only after boxes feel natural.",
+        "Pair with [ESP wallhack setup](/blog/aion-2-esp-wallhack-setup/) for Abyss PvP translation.",
+        "Test stream-proof mode with a 30-second OBS recording."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Radar and rotations"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "Keep mini-radar on for gank calls.",
+        "Practice rotating on zone with radar dots, not tunnel vision.",
+        "Disable cluttered loot timers until zone clears feel clean.",
+        "Supports use radar to call rotates; fraggers use it to avoid stacked fights.",
+        "See [radar hack guide](/blog/aion-2-radar-hack-guide/) for FOV caps."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Training instance targets"
+    },
+    {
+      "type": "ul",
+      "items": [
+        "Fill a private instance for semi-realistic team fights.",
+        "Practice one class profile at a time—staff, then bow, then gun.",
+        "Kick extra bots so only the targets you need remain.",
+        "Private Training instances are the safest place to test [Skill aim assist guide](/blog/aion-2-skill-script-guide/) before Abyss PvP.",
+        "Never first-session a new preset in Abyss PvP on patch day."
+      ]
+    },
+    {
+      "type": "h2",
+      "text": "Practice vs private cheats"
+    },
+    {
+      "type": "p",
+      "text": "Training drills stop at the lobby boundary. Abyss on NCSOFT needs external tools with anti-cheat-aware updates. Explore [Lite](/products/aion-2-cheats/), [Pro](/products/aion-2-cheats/), and [Elite](/products/aion-2-cheats/elite/) at aion2cheats.net."
+    },
+    {
+      "type": "cta",
+      "title": "Ready for Abyss tools?",
+      "text": "Practice in Training; apply aimbot and ESP in Abyss PvP with private aion 2 cheats.",
+      "href": "/go/aion-2/"
+    },
+    {
+      "type": "p",
+      "text": "Aion 2 Cheats at aion2cheats.net sells Aion 2 cheats for Windows PC Open World PvP and instances. Check status before you queue after a patch."
+    }
+  ]
+}

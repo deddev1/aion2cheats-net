@@ -1,0 +1,162 @@
+{
+  "title": "Stream-proof overlay setup for Aion 2",
+  "desc": "Hide ESP wallhack and script overlays from OBS, capture tools and cards—test workflow for content creators.",
+  "tag": "Setup",
+  "readTime": "13 min read",
+  "body": [
+    {
+      "type": "p",
+      "text": "Streaming Aion 2 with visible ESP wallhack or script menus risks platform bans and viewer reports. Stream-proof mode on [Lite](/products/aion-2-cheats/) and [Pro](/products/aion-2-cheats/) hides overlays from OBS, Xbox capture tools, and most software capture—while keeping ESP visible on your physical monitor."
+    },
+    {
+      "type": "h2",
+      "text": "Stream-proof overview"
+    },
+    {
+      "type": "p",
+      "text": "Streaming Aion 2 with visible ESP wallhack or script menus risks platform bans and viewer reports. Stream-proof mode on [Lite](/products/aion-2-cheats/) and [Pro](/products/aion-2-cheats/) hides overlays from OBS, Xbox capture tools, and most software capture—while keeping ESP visible on your physical monitor."
+    },
+    {
+      "type": "p",
+      "text": "Creators run awareness privately while keeping broadcast feed clean—discipline still required in commentary."
+    },
+    {
+      "type": "h2",
+      "text": "Enable stream-proof in loader"
+    },
+    {
+      "type": "p",
+      "text": "Open utility tab in operator portal or external loader. Toggle stream-proof overlay hiding before launching OBS—not after."
+    },
+    {
+      "type": "p",
+      "text": "Apply before Aion 2 if your capture software hooks at game start. Elite operators use the same toggle for bot and Costume Changer menus."
+    },
+    {
+      "type": "h2",
+      "text": "OBS test workflow"
+    },
+    {
+      "type": "p",
+      "text": "Record 30 seconds locally with your live scene collection. Playback must show clean game feed—no drop dots, player ESP, or script HUD."
+    },
+    {
+      "type": "p",
+      "text": "Test game capture and display capture modes separately; dual-monitor setups behave differently. Browser source overlays unaffected by game capture stream-proof."
+    },
+    {
+      "type": "h2",
+      "text": "Capture tools and cards"
+    },
+    {
+      "type": "p",
+      "text": "Windows Game Bar capture respects stream-proof on most builds—verify with Win+G clip."
+    },
+    {
+      "type": "p",
+      "text": "Hardware capture cards reading raw HDMI may still show overlays if signal passes through composited path. Test exact cable chain before going live."
+    },
+    {
+      "type": "h2",
+      "text": "Pair with conservative ESP"
+    },
+    {
+      "type": "p",
+      "text": "Stream-proof hides overlays from capture; it does not make gameplay legit on stream if you call out hidden info."
+    },
+    {
+      "type": "p",
+      "text": "Creators often run [Lite](/products/aion-2-cheats/) awareness privately while keeping broadcast commentary clean. Map defaults: [ESP wallhack setup](/blog/aion-2-esp-wallhack-setup/)."
+    },
+    {
+      "type": "h2",
+      "text": "Costume Changer and capture"
+    },
+    {
+      "type": "p",
+      "text": "[Costume Changer](/blog/aion-2-costume-changer-guide/) cosmetics may appear on capture depending on client path—test separately from ESP stream-proof."
+    },
+    {
+      "type": "p",
+      "text": "Flashy outfit particles on stream can look suspicious even when ESP is hidden—plan content accordingly."
+    },
+    {
+      "type": "h2",
+      "text": "Get stream-safe cheats"
+    },
+    {
+      "type": "p",
+      "text": "Stream-proof ships with all tiers at [Aion 2 Cheats](/products/aion-2-cheats/) on aion2cheats.net. Checkout via secure checkout."
+    },
+    {
+      "type": "p",
+      "text": "Full feature list in [cheats features guide](/blog/aion-2-cheats-features-guide/)—Lite minimum for zoom plus ESP plus stream-proof trio."
+    },
+    {
+      "type": "cta",
+      "title": "Get stream-proof Lite",
+      "text": "Hide ESP from OBS while playing with awareness—secure checkout.",
+      "href": "/go/aion-2/"
+    },
+    {
+      "type": "p",
+      "text": "Aion 2 Cheats at aion2cheats.net sells Aion 2 cheats for Windows PC Open World PvP and instances. Check status before you queue after a patch."
+    },
+    {
+      "type": "p",
+      "text": "anti-cheat enforcement is real: read status, reload loader after patches, and use conservative presets. Humanized aim smoothness and limited ESP range reduce report volume compared to max automation on day one."
+    },
+    {
+      "type": "p",
+      "text": "Internal links across our blog connect setup guides—ESP wallhack, zoom, aimbot, Elite tier, anti-cheat checklist, and purchase walkthrough. Start at [Aion 2 Cheats](/products/aion-2-cheats/) when you are ready to move beyond practice lobbies."
+    },
+    {
+      "type": "p",
+      "text": "Compare [Lite vs Pro](/blog/aion-2-lite-vs-pro/) and [features guide](/blog/aion-2-cheats-features-guide/) before checkout. Elite adds bots, kill steal, and Costume Changer for operators who mastered Pro aimbot."
+    },
+    {
+      "type": "p",
+      "text": "Stream-proof mode, external loader architecture, and cloud config sync distinguish aion2cheats.net from free paste tools that vanish after anti-cheat waves. Private maintenance every patch beats feature bullet lists from unknown forums."
+    },
+    {
+      "type": "p",
+      "text": "Aion 2 Cheats at aion2cheats.net sells Aion 2 cheats for Windows PC Open World PvP and instances. Check status before you queue after a patch."
+    },
+    {
+      "type": "p",
+      "text": "anti-cheat enforcement is real: read status, reload loader after patches, and use conservative presets. Humanized aim smoothness and limited ESP range reduce report volume compared to max automation on day one."
+    },
+    {
+      "type": "p",
+      "text": "Internal links across our blog connect setup guides—ESP wallhack, zoom, aimbot, Elite tier, anti-cheat checklist, and purchase walkthrough. Start at [Aion 2 Cheats](/products/aion-2-cheats/) when you are ready to move beyond practice lobbies."
+    },
+    {
+      "type": "p",
+      "text": "Compare [Lite vs Pro](/blog/aion-2-lite-vs-pro/) and [features guide](/blog/aion-2-cheats-features-guide/) before checkout. Elite adds bots, kill steal, and Costume Changer for operators who mastered Pro aimbot."
+    },
+    {
+      "type": "p",
+      "text": "Stream-proof mode, external loader architecture, and cloud config sync distinguish aion2cheats.net from free paste tools that vanish after anti-cheat waves. Private maintenance every patch beats feature bullet lists from unknown forums."
+    },
+    {
+      "type": "p",
+      "text": "Aion 2 Cheats at aion2cheats.net sells Aion 2 cheats for Windows PC Open World PvP and instances. Check status before you queue after a patch."
+    },
+    {
+      "type": "p",
+      "text": "anti-cheat enforcement is real: read status, reload loader after patches, and use conservative presets. Humanized aim smoothness and limited ESP range reduce report volume compared to max automation on day one."
+    },
+    {
+      "type": "p",
+      "text": "Internal links across our blog connect setup guides—ESP wallhack, zoom, aimbot, Elite tier, anti-cheat checklist, and purchase walkthrough. Start at [Aion 2 Cheats](/products/aion-2-cheats/) when you are ready to move beyond practice lobbies."
+    },
+    {
+      "type": "p",
+      "text": "Compare [Lite vs Pro](/blog/aion-2-lite-vs-pro/) and [features guide](/blog/aion-2-cheats-features-guide/) before checkout. Elite adds bots, kill steal, and Costume Changer for operators who mastered Pro aimbot."
+    },
+    {
+      "type": "p",
+      "text": "Stream-proof mode, external loader architecture, and cloud config sync distinguish aion2cheats.net from free paste tools that vanish after anti-cheat waves. Private maintenance every patch beats feature bullet lists from unknown forums."
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "title": "Skill aim assist guide: staff, bow and gun",
+  "desc": "Per-class aimbot profiles for Pro tier—staff chains, bow tracking and gun finishers for Abyss PvP.",
+  "tag": "Setup",
+  "readTime": "15 min read",
+  "body": [
+    {
+      "type": "p",
+      "text": "[Pro tier](/products/aion-2-cheats/) aimbot shines on timing-heavy loadouts. Staff skill rotations, bow tracking in instances, and gun finishers are Abyss staples—tune smoothness and target priority per class instead of one global snap."
+    },
+    {
+      "type": "h2",
+      "text": "Per-class aimbot on Pro"
+    },
+    {
+      "type": "p",
+      "text": "Save separate portal profiles for staff, bow, gun and sword. Hotkey swap in-match without reopening the loader. Test each profile in Training before Abyss PvP."
+    },
+    {
+      "type": "h2",
+      "text": "Staff profile"
+    },
+    {
+      "type": "p",
+      "text": "Enable Aimbot with moderate FOV and high smoothness for mid-range skill chains. Target Priority on torso for chain transfer, chest for first-skill peeks. Save as class_pvp; lower delays only in instance preset. Practice the skill pattern in Training before enabling aimbot."
+    },
+    {
+      "type": "h2",
+      "text": "Bow tracking"
+    },
+    {
+      "type": "p",
+      "text": "Closer FOV, sticky aim on, smoothness slightly lower than staff. Hotkey macros can fire heals or mobility when three enemies are within radius—add 80–120 ms delay so item use feels natural."
+    },
+    {
+      "type": "h2",
+      "text": "Gun finishers"
+    },
+    {
+      "type": "p",
+      "text": "Tight FOV, target priority torso/chest, short sticky window. Pair with [radar](/blog/aion-2-radar-hack-guide/) so you do not push into a stacked squad."
+    },
+    {
+      "type": "h2",
+      "text": "Shared Pro settings"
+    },
+    {
+      "type": "p",
+      "text": "Start with portal Abyss presets—not max sliders. Full Abyss guide: [aimbot for Abyss PvP](/blog/aion-2-aimbot-pvp-guide/). ESP wallhack gank alerts prevent blind peeks into five-man stacks."
+    },
+    {
+      "type": "h2",
+      "text": "Get Pro class aimbot"
+    },
+    {
+      "type": "p",
+      "text": "Class profiles ship in the portal with [Pro](/products/aion-2-cheats/) at aion2cheats.net. Secure checkout, loader guide, then Abyss."
+    },
+    {
+      "type": "cta",
+      "title": "Get Pro class aimbot",
+      "text": "Staff, bow, gun profiles and more—secure checkout at aion2cheats.net.",
+      "href": "/go/aion-2/"
+    },
+    {
+      "type": "p",
+      "text": "Aion 2 Cheats at aion2cheats.net sells Aion 2 cheats for Windows PC Open World PvP and instances."
+    }
+  ]
+}
