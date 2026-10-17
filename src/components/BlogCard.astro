@@ -6,6 +6,7 @@ import { CARD_IMAGE_SIZES, CARD_IMAGE_WIDTHS } from '../utils/responsiveImage';
 import { blogPostPath } from '../utils/path';
 import type { BlogPost } from '../i18n/types';
 import { getTranslations, localeFromPathname } from '../i18n';
+import { englishBlogTag } from '../i18n/blog/localize';
 const locale = localeFromPathname(Astro.url.pathname);
 const t = getTranslations(locale);
 import { getBlogPostTimestamp, getBlogReadMinutes } from '../data/blog';
@@ -32,7 +33,7 @@ const isFeatured = layout === 'featured';
 const href = blogPostPath(post.slug, locale);
 const timestamp = getBlogPostTimestamp(post.date);
 const readMinutes = getBlogReadMinutes(post.readTime);
-const tagIcon: IconName = blogTagIcons[post.tag] ?? 'tag';
+const tagIcon: IconName = blogTagIcons[englishBlogTag(post.tag)] ?? blogTagIcons[post.tag] ?? 'tag';
 ---
 
 <Card

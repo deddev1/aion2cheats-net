@@ -23,6 +23,7 @@ import {
   isLocale,
   localizePath,
 } from '../../../i18n';
+import { englishBlogTag } from '../../../i18n/blog/localize';
 
 export function getStaticPaths() {
   return NON_DEFAULT_LOCALES.map((locale) => ({ params: { locale } }));
@@ -39,11 +40,12 @@ const breadcrumbs = [
   { name: t.blog.eyebrow, path: blogPath },
 ];
 
-const featured = getFeaturedBlogPost();
-const gridPosts = getNonFeaturedBlogPosts();
-const tags = getBlogTags();
+const featured = getFeaturedBlogPost(locale);
+const gridPosts = getNonFeaturedBlogPosts(locale);
+const tags = getBlogTags(locale);
 const lcpImage = webpSrc(featured?.image ?? blogPosts[0]!.image, CARD_IMAGE_WIDTHS[0]);
-const tagIcon = (tag: string): IconName => blogTagIcons[tag] ?? 'tag';
+const tagIcon = (tag: string): IconName =>
+  blogTagIcons[englishBlogTag(tag)] ?? blogTagIcons[tag] ?? 'tag';
 ---
 
 <BaseLayout

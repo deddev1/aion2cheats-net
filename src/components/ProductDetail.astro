@@ -26,7 +26,7 @@ const { product, breadcrumbs } = Astro.props;
 const locale = localeFromPathname(Astro.url.pathname);
 const t = getTranslations(locale);
 const productFaqs = localizeFaqItems(locale, getProductFaqs(product.slug, product.kind));
-const relatedPosts = getRelatedBlogPostsForProduct(product.relatedBlogSlugs, 6);
+const relatedPosts = getRelatedBlogPostsForProduct(product.relatedBlogSlugs, 6, locale);
 
 const descriptionBlocks = [
   ...product.overview.paragraphs.map((text) => ({ type: 'p' as const, text })),

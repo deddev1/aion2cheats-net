@@ -6,6 +6,7 @@ import type { BlogPost } from '../i18n/types';
 import type { IconName } from './icons/types';
 import { Badge } from '@/components/starwind/badge';
 import { getTranslations, localeFromPathname, localizePath } from '../i18n';
+import { englishBlogTag } from '../i18n/blog/localize';
 
 interface Props {
   post: BlogPost;
@@ -15,7 +16,7 @@ interface Props {
 const { post, class: className } = Astro.props;
 const locale = localeFromPathname(Astro.url.pathname);
 const t = getTranslations(locale);
-const tagIcon: IconName = blogTagIcons[post.tag] ?? 'tag';
+const tagIcon: IconName = blogTagIcons[englishBlogTag(post.tag)] ?? blogTagIcons[post.tag] ?? 'tag';
 const blogHref = localizePath(locale, ROUTES.blog);
 ---
 

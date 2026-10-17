@@ -30,7 +30,7 @@ interface Props {
 
 const { slug, locale } = Astro.props;
 const t = getTranslations(locale);
-const post = getBlogPost(slug);
+const post = getBlogPost(slug, locale);
 
 if (!post) {
   return Astro.redirect(localizePath(locale, '/blog/'));
@@ -43,7 +43,7 @@ const breadcrumbs = [
   { name: post.title, path: postPath },
 ];
 
-const related = getRelatedBlogPosts(post.slug, 3);
+const related = getRelatedBlogPosts(post.slug, 3, locale);
 const faqs = localizeFaqItems(locale, getBlogFaqs(post.tag, post.slug));
 
 function linkify(text: string): string {

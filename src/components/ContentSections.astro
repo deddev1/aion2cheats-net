@@ -8,12 +8,13 @@ import Icon from './icons/Icon.astro';
 import { ROUTES } from '../utils/path';
 import SiteFaqSection from './SiteFaqSection.astro';
 import { getLandingFaqs } from '../data/faq';
+import { localizeFaqItems } from '../i18n/faq-full';
 import { Button } from '@/components/starwind/button';
 
 const locale = localeFromPathname(Astro.url.pathname);
 const t = getTranslations(locale);
-const homeFaqs = t.faq.items.length ? t.faq.items : getLandingFaqs();
-const featuredPosts = getFeaturedBlogPosts(3);
+const homeFaqs = localizeFaqItems(locale, getLandingFaqs());
+const featuredPosts = getFeaturedBlogPosts(3, locale);
 ---
 
 <WorkflowSection />
@@ -37,4 +38,11 @@ const featuredPosts = getFeaturedBlogPosts(3);
   </div>
 </section>
 
-<SiteFaqSection id="faq" titleId="faq-title" items={homeFaqs} />
+<SiteFaqSection
+  id="faq"
+  titleId="faq-title"
+  items={homeFaqs}
+  eyebrow={t.faq.eyebrow}
+  title={t.faq.title}
+  subtitle={t.faq.subtitle}
+/>

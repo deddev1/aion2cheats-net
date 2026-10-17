@@ -7,7 +7,7 @@ import {
   getFeaturedBlogPost,
   getNonFeaturedBlogPosts,
 } from '../../data/blog';
-import { t } from '../../i18n';
+import { getTranslations } from '../../i18n';
 import { resolvePageSeo } from '../../config/seo';
 import { breadcrumbSchema, collectionPageSchema } from '../../utils/schema';
 import { CARD_IMAGE_WIDTHS, webpSrc } from '../../utils/responsiveImage';
@@ -19,22 +19,27 @@ import { blogTagIcons } from '../../data/sectionIcons';
 import type { IconName } from '../../components/icons/types';
 import { Button } from '@/components/starwind/button';
 import { ROUTES } from '../../utils/path';
+import { englishBlogTag } from '../../i18n/blog/localize';
 
-const seo = resolvePageSeo('/blog/');
+const locale = 'en' as const;
+const t = getTranslations(locale);
+const seo = resolvePageSeo('/blog/', locale);
 const breadcrumbs = [
   { name: 'Home', path: '/' },
-  { name: 'Blog', path: '/blog/' },
+  { name: t.blog.eyebrow, path: '/blog/' },
 ];
 
-const featured = getFeaturedBlogPost();
-const gridPosts = getNonFeaturedBlogPosts();
-const tags = getBlogTags();
+const featured = getFeaturedBlogPost(locale);
+const gridPosts = getNonFeaturedBlogPosts(locale);
+const tags = getBlogTags(locale);
 const lcpImage = webpSrc(featured?.image ?? blogPosts[0]!.image, CARD_IMAGE_WIDTHS[0]);
 
-const tagIcon = (tag: string): IconName => blogTagIcons[tag] ?? 'tag';
+const tagIcon = (tag: string): IconName =>
+  blogTagIcons[englishBlogTag(tag)] ?? blogTagIcons[tag] ?? 'tag';
 ---
 
 <BaseLayout
+  locale={locale}
   title={seo.title}
   description={seo.description}
   jsonLd={[
